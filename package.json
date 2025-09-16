@@ -2,7 +2,7 @@
   "name": "disney-ai-concierge",
   "version": "1.0.0",
   "description": "Luxury AI Concierge for Disney Parks",
-  "homepage": "https://etornam.github.io/csfproject",
+  "homepage": "https://csfproject.github.io",
   "private": false,
   "dependencies": {
     "@types/node": "^16.18.0",
