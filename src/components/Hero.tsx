@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Crown, Wand2, ArrowRight, Play } from 'lucide-react';
+import { Compass, Wand2, ArrowRight, Play, MapPin, Clock } from 'lucide-react';
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -19,14 +19,14 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             className="mb-8"
           >
             <div className="flex items-center justify-center mb-4">
-              <Crown className="w-12 h-12 text-luxury-gold mr-3 animate-glow" />
-              <h1 className="luxury-text text-5xl md:text-7xl font-bold bg-gradient-disney bg-clip-text text-transparent">
-                Disney AI Concierge
+              <Compass className="w-12 h-12 text-disney-gold mr-3 animate-compass-spin" />
+              <h1 className="luxury-text text-5xl md:text-7xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                Mickey's Compass
               </h1>
-              <Sparkles className="w-12 h-12 text-disney-pink ml-3 animate-sparkle" />
+              <Wand2 className="w-12 h-12 text-magic-sparkle ml-3 animate-wand-sparkle" />
             </div>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Your magical guide to the most wonderful places on earth
+            <p className="text-xl md:text-2xl text-neutral-white max-w-3xl mx-auto leading-relaxed">
+              Your Personal Magic Maker at Disney Parks
             </p>
           </motion.div>
 
@@ -35,10 +35,10 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto mb-12"
+            className="text-lg text-slate-light max-w-2xl mx-auto mb-12"
           >
-            Experience Disney parks like never before with our luxury AI concierge. 
-            Get personalized recommendations, skip the lines, and create magical memories.
+            Planning Disney is overwhelming. Meet Mickey's Compass, your AI concierge that creates 
+            personalized itineraries, handles dining reservations, and guides you with AR navigation.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -50,20 +50,20 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           >
               <motion.button
                 onClick={onGetStarted}
-                className="group relative px-8 py-4 bg-gradient-luxury-blue text-white font-semibold rounded-xl shadow-2xl overflow-hidden"
+                className="group relative px-8 py-4 bg-gradient-compass text-white font-semibold rounded-xl shadow-2xl overflow-hidden"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-disney-blue to-luxury-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-disney-blue to-disney-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative flex items-center space-x-2">
-                  <Wand2 size={20} />
-                  <span>Start Your Magic</span>
+                  <Compass size={20} />
+                  <span>Start Your Journey</span>
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </motion.button>
 
             <motion.button
-              className="group flex items-center space-x-2 px-8 py-4 glass-effect text-white font-semibold rounded-xl border border-white/20 hover:border-luxury-gold/50 transition-all duration-300"
+              className="group flex items-center space-x-2 px-8 py-4 glass-effect text-white font-semibold rounded-xl border border-white/20 hover:border-disney-gold/50 transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -81,38 +81,38 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
           >
             {[
               {
-                icon: Star,
-                title: "Personalized Magic",
-                description: "AI-powered recommendations tailored to your preferences"
+                icon: MapPin,
+                title: "Personalized Itineraries",
+                description: "AI creates custom park plans based on your family's interests"
               },
               {
-                icon: Crown,
-                title: "Luxury Experience",
-                description: "Premium concierge service with exclusive access"
+                icon: Clock,
+                title: "Dining Reservations",
+                description: "Automatic booking for character meals and fine dining"
               },
               {
-                icon: Sparkles,
-                title: "Seamless Planning",
-                description: "Effortless itinerary planning and real-time updates"
+                icon: Compass,
+                title: "AR Navigation",
+                description: "Guided directions with magical AR overlays and tips"
               }
             ].map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div
                   key={index}
-                  className="glass-effect p-6 rounded-xl border border-white/10 hover:border-luxury-gold/30 transition-all duration-300 group"
+                  className="glass-effect p-6 rounded-xl border border-white/10 hover:border-disney-gold/30 transition-all duration-300 group"
                   whileHover={{ y: -5, scale: 1.02 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1 + index * 0.2 }}
                 >
-                  <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-disney rounded-full group-hover:animate-glow">
+                  <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-compass rounded-full group-hover:animate-glow">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="luxury-text text-xl font-semibold text-white mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-400 text-center">
+                  <p className="text-slate-light text-center">
                     {feature.description}
                   </p>
                 </motion.div>

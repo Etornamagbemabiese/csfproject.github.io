@@ -1,7 +1,7 @@
 {
-  "name": "disney-ai-concierge",
+  "name": "mickeys-compass",
   "version": "1.0.0",
-  "description": "Luxury AI Concierge for Disney Parks",
+  "description": "Mickey's Compass - Your Personal Magic Maker at Disney Parks",
   "homepage": "https://csfproject.github.io",
   "private": false,
   "dependencies": {

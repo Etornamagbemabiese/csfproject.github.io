@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Crown, Sparkles, Home, MessageCircle, User, Settings, X, MapPin } from 'lucide-react';
+import { Compass, Home, MessageCircle, User, Settings, X, MapPin, Wand2 } from 'lucide-react';
 
 interface HeaderProps {
   activeSection: string;
@@ -12,9 +12,9 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
   
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
-    { id: 'concierge', label: 'AI Concierge', icon: MessageCircle },
-    { id: 'luxury-hubs', label: 'Luxury Hubs', icon: MapPin },
-    { id: 'profile', label: 'Profile', icon: User },
+    { id: 'concierge', label: 'Magic Guide', icon: MessageCircle },
+    { id: 'luxury-hubs', label: 'Parks & Resorts', icon: MapPin },
+    { id: 'profile', label: 'My Journey', icon: User },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
@@ -34,11 +34,11 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
             whileTap={{ scale: 0.95 }}
           >
             <div className="relative">
-              <Crown className="w-8 h-8 text-luxury-gold" />
-              <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-disney-pink animate-sparkle" />
+              <Compass className="w-8 h-8 text-disney-gold animate-compass-spin" />
+              <Wand2 className="absolute -top-1 -right-1 w-4 h-4 text-magic-sparkle animate-wand-sparkle" />
             </div>
             <div className="luxury-text text-xl font-bold text-white">
-              Disney AI Concierge
+              Mickey's Compass
             </div>
           </motion.div>
 
@@ -54,8 +54,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
                   onClick={() => onSectionChange(item.id)}
                   className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                     isActive 
-                      ? 'bg-gradient-luxury text-white shadow-lg' 
-                      : 'text-gray-300 hover:text-white hover:bg-white/10'
+                      ? 'bg-gradient-compass text-white shadow-lg' 
+                      : 'text-slate-light hover:text-white hover:bg-white/10'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
                   <span className="font-medium">{item.label}</span>
                   {isActive && (
                     <motion.div
-                      className="absolute inset-0 bg-gradient-luxury rounded-lg -z-10"
+                      className="absolute inset-0 bg-gradient-compass rounded-lg -z-10"
                       layoutId="activeTab"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
@@ -116,8 +116,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
                     }}
                     className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-300 ${
                       isActive 
-                        ? 'bg-gradient-luxury text-white' 
-                        : 'text-gray-300 hover:text-white hover:bg-white/10'
+                        ? 'bg-gradient-compass text-white' 
+                        : 'text-slate-light hover:text-white hover:bg-white/10'
                     }`}
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.98 }}

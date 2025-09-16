@@ -8,8 +8,7 @@ import {
   MapPin, 
   Clock, 
   Star,
-  Sparkles,
-  Crown,
+  Compass,
   Wand2,
   Heart,
   Gift
@@ -28,7 +27,7 @@ const AIConcierge: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Welcome to your Disney AI Concierge! ✨ I'm here to make your magical journey unforgettable. How can I help you today?",
+      text: "Welcome, friend! 🧭 I'm Mickey's Compass, your personal magic maker! I'm here to guide you through the most wonderful places on earth. What magical adventure shall we plan today?",
       isUser: false,
       timestamp: new Date(),
       type: 'text'
@@ -48,13 +47,13 @@ const AIConcierge: React.FC = () => {
   }, [messages]);
 
   const quickActions = [
-    { icon: MapPin, label: "Find Attractions", action: "Show me the best attractions to visit today" },
-    { icon: Clock, label: "Check Wait Times", action: "What are the current wait times?" },
-    { icon: Star, label: "Dining Options", action: "Recommend restaurants for dinner" },
-    { icon: Gift, label: "Shopping", action: "Where can I find the best souvenirs?" },
-    { icon: Camera, label: "Photo Spots", action: "Show me the best photo opportunities" },
-    { icon: Heart, label: "Character Meets", action: "When can I meet my favorite characters?" },
-    { icon: Crown, label: "Luxury Hubs", action: "Find the nearest luxury dining and relaxation spots" }
+    { icon: MapPin, label: "Plan My Day", action: "Help me plan the perfect day at the parks" },
+    { icon: Clock, label: "Wait Times", action: "What are the current wait times?" },
+    { icon: Star, label: "Dining Magic", action: "Find me some magical dining experiences" },
+    { icon: Gift, label: "Souvenir Hunt", action: "Where can I find the best Disney treasures?" },
+    { icon: Camera, label: "Photo Magic", action: "Show me the most magical photo spots" },
+    { icon: Heart, label: "Character Magic", action: "When can I meet my favorite Disney friends?" },
+    { icon: Compass, label: "Navigation", action: "Help me navigate the parks like a pro" }
   ];
 
   const handleSendMessage = async (text: string) => {
@@ -89,18 +88,20 @@ const AIConcierge: React.FC = () => {
   const generateAIResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
     
-    if (input.includes('attraction') || input.includes('ride')) {
-      return "Based on your preferences, I recommend starting with Space Mountain (15 min wait) and then heading to Pirates of the Caribbean (5 min wait). Would you like me to create a personalized itinerary for your day?";
-    } else if (input.includes('dining') || input.includes('restaurant') || input.includes('food')) {
-      return "For a magical dining experience, I suggest Be Our Guest Restaurant in Fantasyland - they have availability at 7:30 PM. Or for something quicker, try Dole Whip at Aloha Isle! 🍍";
+    if (input.includes('plan') || input.includes('day') || input.includes('itinerary')) {
+      return "Oh, I love planning magical days! 🧭 Let me create the perfect adventure for you! I'd suggest starting with Space Mountain (only 15 minutes wait - perfect timing!), then we'll head to Pirates of the Caribbean (just 5 minutes!). Would you like me to craft a full personalized itinerary?";
+    } else if (input.includes('dining') || input.includes('restaurant') || input.includes('food') || input.includes('magical dining')) {
+      return "Oh my, you're in for a treat! 🍽️✨ Be Our Guest Restaurant in Fantasyland has a table available at 7:30 PM - it's like dining in the Beast's castle! Or if you're feeling adventurous, the Dole Whip at Aloha Isle is absolutely magical! 🍍";
     } else if (input.includes('wait time') || input.includes('line')) {
-      return "Here are the current wait times: Space Mountain (15 min), Big Thunder Mountain (25 min), Haunted Mansion (10 min), and It's a Small World (5 min). The best time to visit popular attractions is during the parade!";
-    } else if (input.includes('photo') || input.includes('picture')) {
-      return "Perfect photo spots right now: Cinderella Castle (golden hour lighting), Main Street USA (vintage charm), and Tomorrowland (futuristic backdrop). I can also help you find character meet-and-greets!";
-    } else if (input.includes('character')) {
-      return "Character meet-and-greets today: Mickey Mouse at Town Square (10 AM - 6 PM), Elsa & Anna at Princess Fairytale Hall (9 AM - 8 PM), and Buzz Lightyear at Tomorrowland (11 AM - 7 PM).";
+      return "Great timing to ask! 🕐 Here's the current magic: Space Mountain (15 min - perfect!), Big Thunder Mountain (25 min), Haunted Mansion (10 min - spooky fun!), and It's a Small World (5 min - a classic!). Pro tip: the parade is the perfect time to hit those popular attractions!";
+    } else if (input.includes('photo') || input.includes('picture') || input.includes('magical photo')) {
+      return "Oh, you're going to love these spots! 📸✨ Cinderella Castle has that perfect golden hour lighting right now, Main Street USA has that vintage charm, and Tomorrowland gives you that futuristic backdrop! I can also help you find the best character meet-and-greets for those magical memories!";
+    } else if (input.includes('character') || input.includes('disney friends')) {
+      return "Your Disney friends are ready to meet you! 🎭 Mickey Mouse is at Town Square (10 AM - 6 PM), Elsa & Anna are at Princess Fairytale Hall (9 AM - 8 PM), and Buzz Lightyear is in Tomorrowland (11 AM - 7 PM). Don't forget to bring your autograph book!";
+    } else if (input.includes('navigate') || input.includes('navigation')) {
+      return "I'm your navigation wizard! 🧭✨ I can guide you through the parks with AR magic, show you the shortest routes, and even help you avoid the crowds. Just tell me where you want to go, and I'll make sure you get there with time to spare for all the magic!";
     } else {
-      return "That's a great question! I'm here to help make your Disney experience magical. I can assist with attractions, dining, wait times, photo spots, character meets, and so much more. What would you like to explore first? ✨";
+      return "What a wonderful question! 🌟 I'm Mickey's Compass, and I'm here to make your Disney experience absolutely magical! I can help with planning your perfect day, finding the best dining spots, checking wait times, discovering photo opportunities, meeting characters, and so much more. What magical adventure shall we embark on first? ✨";
     }
   };
 
@@ -123,11 +124,11 @@ const AIConcierge: React.FC = () => {
           className="text-center mb-8"
         >
           <div className="flex items-center justify-center mb-4">
-            <Crown className="w-8 h-8 text-luxury-gold mr-3" />
-            <h1 className="luxury-text text-3xl font-bold bg-gradient-disney bg-clip-text text-transparent">AI Concierge</h1>
-            <Sparkles className="w-8 h-8 text-disney-pink ml-3 animate-sparkle" />
+            <Compass className="w-8 h-8 text-disney-gold mr-3 animate-compass-spin" />
+            <h1 className="luxury-text text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent">Mickey's Compass</h1>
+            <Wand2 className="w-8 h-8 text-magic-sparkle ml-3 animate-wand-sparkle" />
           </div>
-          <p className="text-gray-400">Your magical guide to Disney parks</p>
+          <p className="text-slate-light">Your personal magic maker at Disney Parks</p>
         </motion.div>
 
         {/* Chat Container */}
@@ -150,7 +151,7 @@ const AIConcierge: React.FC = () => {
                 >
                   <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
                     message.isUser 
-                      ? 'bg-gradient-luxury-blue text-white' 
+                      ? 'bg-gradient-compass text-white' 
                       : 'bg-white/10 text-white border border-white/20'
                   }`}>
                     <p className="text-sm leading-relaxed">{message.text}</p>
@@ -173,8 +174,8 @@ const AIConcierge: React.FC = () => {
               >
                 <div className="bg-white/10 text-white border border-white/20 px-4 py-3 rounded-2xl">
                   <div className="flex items-center space-x-2">
-                    <Wand2 className="w-4 h-4 text-luxury-gold animate-spin" />
-                    <span className="text-sm">Concierge is typing</span>
+                    <Wand2 className="w-4 h-4 text-disney-gold animate-wand-sparkle" />
+                    <span className="text-sm">Mickey's Compass is thinking...</span>
                     <div className="loading-dots"></div>
                   </div>
                 </div>
@@ -194,7 +195,7 @@ const AIConcierge: React.FC = () => {
                   <motion.button
                     key={index}
                     onClick={() => handleQuickAction(action.action)}
-                    className="flex items-center space-x-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-luxury-gold/30 rounded-lg transition-all duration-300 text-white text-sm"
+                    className="flex items-center space-x-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-disney-gold/30 rounded-lg transition-all duration-300 text-white text-sm"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -215,8 +216,8 @@ const AIConcierge: React.FC = () => {
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputText)}
-                  placeholder="Ask me anything about your Disney experience..."
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-luxury-gold/50 focus:ring-2 focus:ring-luxury-gold/20 transition-all duration-300"
+                  placeholder="Ask me anything about your magical Disney adventure..."
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-light focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
                 />
               </div>
               
@@ -225,7 +226,7 @@ const AIConcierge: React.FC = () => {
                 className={`p-3 rounded-xl transition-all duration-300 ${
                   isListening 
                     ? 'bg-red-500/20 border border-red-500/50 text-red-400' 
-                    : 'bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-luxury-gold/50'
+                    : 'bg-white/5 border border-white/10 text-slate-light hover:text-white hover:border-disney-gold/50'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -236,7 +237,7 @@ const AIConcierge: React.FC = () => {
               <motion.button
                 onClick={() => handleSendMessage(inputText)}
                 disabled={!inputText.trim()}
-                className="p-3 bg-gradient-luxury-blue text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-300"
+                className="p-3 bg-gradient-compass text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
