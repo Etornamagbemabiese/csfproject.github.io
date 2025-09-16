@@ -49,13 +49,13 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="relative mt-20">
-      {/* Magical background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-blue-900/50 to-transparent"></div>
+    <footer className="relative mt-24">
+      {/* Sophisticated background */}
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-slate/80 to-transparent"></div>
       
       <div className="relative z-10">
         {/* Main footer content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {/* Brand section */}
             <div className="lg:col-span-2">
@@ -66,31 +66,31 @@ const Footer: React.FC = () => {
                 viewport={{ once: true }}
                 className="mb-6"
               >
-                <div className="flex items-center space-x-3 mb-4">
-                  <Crown className="w-8 h-8 text-luxury-gold" />
-                  <h3 className="luxury-text text-2xl font-bold text-white">
-                    Enchanted Guide
+                <div className="flex items-center space-x-3 mb-6">
+                  <Crown className="w-8 h-8 text-gold" />
+                  <h3 className="luxury-text text-2xl font-bold text-off-white">
+                    Disney AI Concierge
                   </h3>
-                  <Sparkles className="w-6 h-6 text-disney-pink animate-sparkle" />
+                  <Sparkles className="w-6 h-6 text-soft-blue animate-sparkle" />
                 </div>
-                <p className="text-gray-400 leading-relaxed mb-6">
-                  Your mystical companion for creating extraordinary memories. 
-                  Experience magical destinations like never before with our enchanted AI guide.
+                <p className="text-soft-gray leading-relaxed mb-8 text-body">
+                  Your luxury companion for creating extraordinary Disney memories. 
+                  Experience magical destinations like never before with our sophisticated AI guide.
                 </p>
                 
                 {/* Contact info */}
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 text-gray-400">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3 text-soft-gray">
                     <Mail size={16} />
-                    <span>guide@enchanted.com</span>
+                    <span>concierge@disneyai.com</span>
                   </div>
-                  <div className="flex items-center space-x-3 text-gray-400">
+                  <div className="flex items-center space-x-3 text-soft-gray">
                     <Phone size={16} />
-                    <span>1-800-ENCHANTED</span>
+                    <span>1-800-DISNEY-AI</span>
                   </div>
-                  <div className="flex items-center space-x-3 text-gray-400">
+                  <div className="flex items-center space-x-3 text-soft-gray">
                     <MapPin size={16} />
-                    <span>Available at magical destinations worldwide</span>
+                    <span>Available at Disney parks worldwide</span>
                   </div>
                 </div>
               </motion.div>
@@ -105,16 +105,16 @@ const Footer: React.FC = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h4 className="luxury-text text-lg font-semibold text-white mb-4 capitalize">
+                <h4 className="luxury-text text-lg font-semibold text-off-white mb-6 capitalize">
                   {category}
                 </h4>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {links.map((link, linkIndex) => (
                     <li key={linkIndex}>
                       <motion.a
                         href={link.href}
-                        className="text-gray-400 hover:text-enchanted-gold transition-colors duration-300 text-sm"
-                        whileHover={{ x: 5 }}
+                        className="text-soft-gray hover:text-soft-blue transition-colors duration-300 text-small"
+                        whileHover={{ x: 4 }}
                       >
                         {link.label}
                       </motion.a>

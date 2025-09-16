@@ -78,7 +78,7 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
@@ -86,18 +86,18 @@ const Features: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="luxury-text text-4xl md:text-5xl font-bold bg-gradient-disney bg-clip-text text-transparent mb-6">
+          <h2 className="luxury-text text-display font-bold text-off-white mb-6">
             Magical Features
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-subheading text-soft-gray max-w-4xl mx-auto leading-relaxed">
             Discover all the ways our AI concierge can make your Disney experience truly magical
           </p>
         </motion.div>
 
         {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
@@ -108,30 +108,30 @@ const Features: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -6 }}
               >
-                <div className="glass-effect p-6 rounded-xl border border-white/10 hover:border-luxury-gold/30 transition-all duration-300 h-full group-hover:shadow-2xl group-hover:shadow-luxury-gold/20">
+                <div className="card h-full group-hover:shadow-2xl group-hover:shadow-soft-blue/20">
                   {/* Gradient background on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-10 rounded-xl transition-opacity duration-300`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 rounded-xl transition-opacity duration-300`}></div>
                   
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className={`flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${feature.color} rounded-full group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`flex items-center justify-center w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${feature.color} rounded-full group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     
                     {/* Content */}
-                    <h3 className="luxury-text text-lg font-semibold text-white mb-2 text-center">
+                    <h3 className="luxury-text text-lg font-semibold text-off-white mb-3 text-center">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-400 text-sm text-center leading-relaxed">
+                    <p className="text-soft-gray text-sm text-center leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
 
-                  {/* Sparkle effect */}
-                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-2 h-2 bg-luxury-gold rounded-full animate-pulse"></div>
+                  {/* Subtle accent */}
+                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-2 h-2 bg-soft-blue rounded-full animate-pulse"></div>
                   </div>
                 </div>
               </motion.div>
@@ -145,19 +145,19 @@ const Features: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
-          <div className="glass-effect p-8 rounded-2xl border border-enchanted-gold/30 max-w-2xl mx-auto">
-            <h3 className="luxury-text text-2xl font-bold text-white mb-4">
+          <div className="card-elevated max-w-3xl mx-auto">
+            <h3 className="luxury-text text-heading font-bold text-off-white mb-6">
               Ready for Your Extraordinary Quest?
             </h3>
-            <p className="text-gray-300 mb-6">
+            <p className="text-soft-gray mb-8 text-body">
               Join thousands of adventurers who have experienced the enchantment with our mystical guide
             </p>
             <motion.button
-              className="px-8 py-3 bg-gradient-royal text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+              className="btn-primary px-8 py-4 text-lg"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
               Begin Your Quest
             </motion.button>

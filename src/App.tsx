@@ -28,37 +28,37 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Magical background effects */}
+    <div className="min-h-screen bg-gradient-to-br from-charcoal via-slate to-dark-gray">
+      {/* Subtle background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-enchanted-gold/10 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-enchanted-pink/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-soft-blue/5 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-emerald/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-gold/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      {/* Floating sparkles */}
+      {/* Subtle floating elements */}
       <div className="fixed inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute text-enchanted-gold/30"
+            className="absolute text-soft-blue/20"
             initial={{ 
               x: Math.random() * window.innerWidth, 
               y: Math.random() * window.innerHeight,
               opacity: 0 
             }}
             animate={{ 
-              y: [null, -20, 0],
-              opacity: [0, 1, 0],
-              rotate: [0, 180, 360]
+              y: [null, -15, 0],
+              opacity: [0, 0.6, 0],
+              rotate: [0, 90, 180]
             }}
             transition={{ 
-              duration: 3 + Math.random() * 2,
+              duration: 4 + Math.random() * 2,
               repeat: Infinity,
-              delay: Math.random() * 2
+              delay: Math.random() * 3
             }}
           >
-            <Sparkles size={16} />
+            <Sparkles size={12} />
           </motion.div>
         ))}
       </div>
