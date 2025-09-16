@@ -123,12 +123,12 @@ const AIConcierge: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <div className="flex items-center justify-center mb-4">
-            <Compass className="w-8 h-8 text-disney-gold mr-3 animate-compass-spin" />
-            <h1 className="luxury-text text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent">Mickey's Compass</h1>
-            <Wand2 className="w-8 h-8 text-magic-sparkle ml-3 animate-wand-sparkle" />
+          <div className="flex items-center justify-center mb-6">
+            <Compass className="w-12 h-12 text-disney-gold mr-4 animate-compass-spin drop-shadow-lg" />
+            <h1 className="luxury-text text-4xl font-bold bg-gradient-hero bg-clip-text text-transparent drop-shadow-lg">Mickey's Compass</h1>
+            <Wand2 className="w-12 h-12 text-magic-sparkle ml-4 animate-wand-sparkle drop-shadow-lg" />
           </div>
-          <p className="text-slate-light">Your personal magic maker at Disney Parks</p>
+          <p className="text-xl text-slate-light font-medium">Your personal magic maker at Disney Parks</p>
         </motion.div>
 
         {/* Chat Container */}
@@ -136,7 +136,7 @@ const AIConcierge: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="glass-effect rounded-2xl border border-white/10 overflow-hidden"
+          className="card-elevated rounded-3xl border border-white/20 overflow-hidden"
         >
           {/* Messages */}
           <div className="h-96 overflow-y-auto p-6 space-y-4">
@@ -149,14 +149,14 @@ const AIConcierge: React.FC = () => {
                   exit={{ opacity: 0, y: -20 }}
                   className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
+                  <div className={`max-w-xs lg:max-w-lg px-5 py-4 rounded-2xl ${
                     message.isUser 
-                      ? 'bg-gradient-compass text-white' 
-                      : 'bg-white/10 text-white border border-white/20'
+                      ? 'bg-gradient-compass text-white shadow-lg' 
+                      : 'bg-white/10 text-white border border-white/20 backdrop-blur-sm'
                   }`}>
-                    <p className="text-sm leading-relaxed">{message.text}</p>
-                    <p className={`text-xs mt-2 ${
-                      message.isUser ? 'text-white/70' : 'text-gray-400'
+                    <p className="text-base leading-relaxed font-medium">{message.text}</p>
+                    <p className={`text-xs mt-3 ${
+                      message.isUser ? 'text-white/70' : 'text-slate-light'
                     }`}>
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
@@ -172,10 +172,10 @@ const AIConcierge: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-start"
               >
-                <div className="bg-white/10 text-white border border-white/20 px-4 py-3 rounded-2xl">
-                  <div className="flex items-center space-x-2">
-                    <Wand2 className="w-4 h-4 text-disney-gold animate-wand-sparkle" />
-                    <span className="text-sm">Mickey's Compass is thinking...</span>
+                <div className="bg-white/10 text-white border border-white/20 px-5 py-4 rounded-2xl backdrop-blur-sm">
+                  <div className="flex items-center space-x-3">
+                    <Wand2 className="w-5 h-5 text-disney-gold animate-wand-sparkle" />
+                    <span className="text-base font-medium">Mickey's Compass is thinking...</span>
                     <div className="loading-dots"></div>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ const AIConcierge: React.FC = () => {
 
           {/* Quick Actions */}
           <div className="border-t border-white/10 p-4">
-            <p className="text-sm text-gray-400 mb-3">Quick Actions:</p>
+            <p className="text-base text-slate-light mb-4 font-medium">Quick Actions:</p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {quickActions.map((action, index) => {
                 const Icon = action.icon;
@@ -195,7 +195,7 @@ const AIConcierge: React.FC = () => {
                   <motion.button
                     key={index}
                     onClick={() => handleQuickAction(action.action)}
-                    className="flex items-center space-x-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-disney-gold/30 rounded-lg transition-all duration-300 text-white text-sm"
+                    className="flex items-center space-x-2 px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-disney-gold/30 rounded-xl transition-all duration-300 text-white text-sm font-medium"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -217,13 +217,13 @@ const AIConcierge: React.FC = () => {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputText)}
                   placeholder="Ask me anything about your magical Disney adventure..."
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-light focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
+                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-light focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-base"
                 />
               </div>
               
               <motion.button
                 onClick={toggleListening}
-                className={`p-3 rounded-xl transition-all duration-300 ${
+                className={`p-4 rounded-xl transition-all duration-300 ${
                   isListening 
                     ? 'bg-red-500/20 border border-red-500/50 text-red-400' 
                     : 'bg-white/5 border border-white/10 text-slate-light hover:text-white hover:border-disney-gold/50'
@@ -237,7 +237,7 @@ const AIConcierge: React.FC = () => {
               <motion.button
                 onClick={() => handleSendMessage(inputText)}
                 disabled={!inputText.trim()}
-                className="p-3 bg-gradient-compass text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-300"
+                className="p-4 bg-gradient-compass text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
