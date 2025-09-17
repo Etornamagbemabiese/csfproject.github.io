@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, Wand2, ArrowRight, Play, MapPin, Clock } from 'lucide-react';
+import { Compass, Wand2, ArrowRight, MapPin, Clock } from 'lucide-react';
 
 interface HeroProps {
   onGetStarted: () => void;
@@ -8,27 +8,27 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
   return (
-    <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <div className="text-center">
           {/* Main heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8"
+            className="mb-16"
           >
-            <div className="flex items-center justify-center mb-6">
-              <Compass className="w-16 h-16 text-disney-gold mr-4 animate-compass-spin drop-shadow-lg" />
-              <h1 className="luxury-text text-6xl md:text-8xl font-bold bg-gradient-hero bg-clip-text text-transparent drop-shadow-lg">
+            <div className="flex items-center justify-center mb-8">
+              <Compass className="w-12 h-12 text-white mr-6 opacity-80" />
+              <h1 className="font-disney text-5xl md:text-7xl text-white tracking-wide">
                 Mickey's Compass
               </h1>
-              <Wand2 className="w-16 h-16 text-magic-sparkle ml-4 animate-wand-sparkle drop-shadow-lg" />
+              <Wand2 className="w-12 h-12 text-white ml-6 opacity-80" />
             </div>
-            <p className="text-2xl md:text-3xl text-neutral-white max-w-4xl mx-auto leading-relaxed font-medium mb-4">
+            <p className="font-disney-body text-2xl md:text-3xl text-white max-w-4xl mx-auto leading-relaxed font-medium mb-6">
               Your Personal Magic Maker at Disney Parks
             </p>
-            <p className="text-lg md:text-xl text-slate-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-quicksand">
               Transform overwhelming Disney planning into magical adventures with AI-powered guidance
             </p>
           </motion.div>
@@ -77,14 +77,6 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                 </div>
               </motion.button>
 
-            <motion.button
-              className="btn-secondary group flex items-center space-x-3 px-10 py-5 text-lg font-semibold rounded-2xl"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Play size={24} />
-              <span>Watch Demo</span>
-            </motion.button>
           </motion.div>
 
           {/* Feature highlights */}

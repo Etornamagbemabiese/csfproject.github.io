@@ -24,9 +24,11 @@ module.exports = {
         'wand-purple': '#8B5CF6',
       },
       fontFamily: {
-        'disney': ['Walt Disney Script', 'cursive'],
-        'luxury': ['Playfair Display', 'serif'],
+        'disney': ['Fredoka One', 'cursive'],
+        'disney-body': ['Fredoka', 'sans-serif'],
+        'luxury': ['Fredoka One', 'cursive'],
         'modern': ['Inter', 'sans-serif'],
+        'quicksand': ['Quicksand', 'sans-serif'],
       },
       animation: {
         'sparkle': 'sparkle 2s ease-in-out infinite',
