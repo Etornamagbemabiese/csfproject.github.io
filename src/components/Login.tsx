@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Compass, 
+  Compass,
   Wand2, 
   Mail, 
   Lock, 

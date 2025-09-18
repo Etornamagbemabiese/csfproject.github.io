@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Send, 
-  Mic, 
-  MicOff, 
   Camera, 
   MapPin, 
   Clock, 
@@ -36,8 +33,6 @@ const AIConcierge: React.FC = () => {
       type: 'text'
     }
   ]);
-  const [inputText, setInputText] = useState('');
-  const [isListening, setIsListening] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -74,7 +69,6 @@ const AIConcierge: React.FC = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
-    setInputText('');
     setIsTyping(true);
 
     // Simulate AI response with more realistic timing
@@ -154,10 +148,6 @@ const AIConcierge: React.FC = () => {
     handleSendMessage(action);
   };
 
-  const toggleListening = () => {
-    setIsListening(!isListening);
-    // Voice recognition would be implemented here
-  };
 
   return (
     <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 min-h-screen">
