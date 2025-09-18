@@ -11,7 +11,9 @@ import {
   Compass,
   Wand2,
   Heart,
-  Gift
+  Gift,
+  Zap,
+  Music
 } from 'lucide-react';
 
 interface Message {
@@ -47,13 +49,15 @@ const AIConcierge: React.FC = () => {
   }, [messages]);
 
   const quickActions = [
-    { icon: MapPin, label: "Plan My Day", action: "Help me plan the perfect day at the parks" },
-    { icon: Clock, label: "Wait Times", action: "What are the current wait times?" },
-    { icon: Star, label: "Dining Magic", action: "Find me some magical dining experiences" },
-    { icon: Gift, label: "Souvenir Hunt", action: "Where can I find the best Disney treasures?" },
-    { icon: Camera, label: "Photo Magic", action: "Show me the most magical photo spots" },
-    { icon: Heart, label: "Character Magic", action: "When can I meet my favorite Disney friends?" },
-    { icon: Compass, label: "Navigation", action: "Help me navigate the parks like a pro" }
+    { icon: MapPin, label: "Plan My Day", action: "Create a personalized itinerary for my park visit" },
+    { icon: Clock, label: "Wait Times", action: "Show me current wait times for all attractions" },
+    { icon: Star, label: "Dining Magic", action: "Find available dining reservations and recommendations" },
+    { icon: Gift, label: "Souvenir Hunt", action: "Where can I find exclusive Disney merchandise?" },
+    { icon: Camera, label: "Photo Spots", action: "Show me the best photo opportunities and PhotoPass locations" },
+    { icon: Heart, label: "Meet Characters", action: "When and where can I meet Disney characters?" },
+    { icon: Compass, label: "Navigation", action: "Help me navigate between attractions efficiently" },
+    { icon: Zap, label: "Weather Update", action: "What's the current weather and indoor activity recommendations?" },
+    { icon: Music, label: "Shows & Events", action: "What entertainment and shows are happening today?" }
   ];
 
   const handleSendMessage = async (text: string) => {
@@ -71,7 +75,7 @@ const AIConcierge: React.FC = () => {
     setInputText('');
     setIsTyping(true);
 
-    // Simulate AI response
+    // Simulate AI response with more realistic timing
     setTimeout(() => {
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
@@ -82,28 +86,65 @@ const AIConcierge: React.FC = () => {
       };
       setMessages(prev => [...prev, aiResponse]);
       setIsTyping(false);
-    }, 1500);
+    }, 800 + Math.random() * 1200); // 0.8-2 second delay for more natural feel
   };
 
   const generateAIResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
     
-    if (input.includes('plan') || input.includes('day') || input.includes('itinerary')) {
-      return "Oh, I love planning magical days! 🧭 Let me create the perfect adventure for you! I'd suggest starting with Space Mountain (only 15 minutes wait - perfect timing!), then we'll head to Pirates of the Caribbean (just 5 minutes!). Would you like me to craft a full personalized itinerary?";
-    } else if (input.includes('dining') || input.includes('restaurant') || input.includes('food') || input.includes('magical dining')) {
-      return "Oh my, you're in for a treat! 🍽️✨ Be Our Guest Restaurant in Fantasyland has a table available at 7:30 PM - it's like dining in the Beast's castle! Or if you're feeling adventurous, the Dole Whip at Aloha Isle is absolutely magical! 🍍";
-    } else if (input.includes('wait time') || input.includes('line')) {
-      return "Great timing to ask! 🕐 Here's the current magic: Space Mountain (15 min - perfect!), Big Thunder Mountain (25 min), Haunted Mansion (10 min - spooky fun!), and It's a Small World (5 min - a classic!). Pro tip: the parade is the perfect time to hit those popular attractions!";
-    } else if (input.includes('photo') || input.includes('picture') || input.includes('magical photo')) {
-      return "Oh, you're going to love these spots! 📸✨ Cinderella Castle has that perfect golden hour lighting right now, Main Street USA has that vintage charm, and Tomorrowland gives you that futuristic backdrop! I can also help you find the best character meet-and-greets for those magical memories!";
-    } else if (input.includes('souvenir') || input.includes('gift') || input.includes('shop') || input.includes('buy')) {
-      return "🛍️ Best souvenir spots: World of Disney (largest selection), Emporium on Main Street, and don't miss the new shops in Galaxy's Edge! Pro tip: Ask about exclusive park merchandise and check for limited edition items!";
-    } else if (input.includes('character') || input.includes('disney friends')) {
-      return "Your Disney friends are ready to meet you! 🎭 Mickey Mouse is at Town Square (10 AM - 6 PM), Elsa & Anna are at Princess Fairytale Hall (9 AM - 8 PM), and Buzz Lightyear is in Tomorrowland (11 AM - 7 PM). Don't forget to bring your autograph book!";
-    } else if (input.includes('navigate') || input.includes('navigation')) {
-      return "I'm your navigation wizard! 🧭✨ I can guide you through the parks with AR magic, show you the shortest routes, and even help you avoid the crowds. Just tell me where you want to go, and I'll make sure you get there with time to spare for all the magic!";
-    } else {
-      return "What a wonderful question! 🌟 I'm Mickey's Compass, and I'm here to make your Disney experience absolutely magical! I can help with planning your perfect day, finding the best dining spots, checking wait times, discovering photo opportunities, meeting characters, and so much more. What magical adventure shall we embark on first? ✨";
+    // Planning and Itineraries
+    if (input.includes('plan') || input.includes('day') || input.includes('itinerary') || input.includes('schedule')) {
+      return "🧭 Perfect! Let me craft your magical day! Here's my recommended itinerary:\n\n**Morning (9-12 PM):**\n• Start at Space Mountain (15 min wait)\n• Pirates of the Caribbean (5 min wait)\n• Haunted Mansion (10 min wait)\n\n**Afternoon (12-4 PM):**\n• Lunch at Be Our Guest (booked for 1:30 PM)\n• Big Thunder Mountain (25 min wait)\n• Splash Mountain (20 min wait)\n\n**Evening (4-8 PM):**\n• Character meet at Town Square\n• Dinner at Cinderella's Royal Table (7 PM)\n• Fireworks viewing at 9 PM\n\nWould you like me to adjust this plan or add specific attractions?";
+    }
+    
+    // Dining and Food
+    else if (input.includes('dining') || input.includes('restaurant') || input.includes('food') || input.includes('eat') || input.includes('meal')) {
+      return "🍽️ Magical dining options available now:\n\n**Character Dining:**\n• Chef Mickey's (Contemporary Resort) - 7:30 PM available\n• Cinderella's Royal Table - 6:45 PM available\n• Be Our Guest (Fantasyland) - 1:30 PM available\n\n**Quick Service:**\n• Dole Whip at Aloha Isle (Adventureland)\n• Turkey Leg at Frontierland\n• Mickey Pretzel at Main Street\n\n**Fine Dining:**\n• Victoria & Albert's (Grand Floridian) - 8:00 PM\n• California Grill (Contemporary) - 7:15 PM\n\nWhich type of dining experience interests you most?";
+    }
+    
+    // Wait Times
+    else if (input.includes('wait') || input.includes('line') || input.includes('queue') || input.includes('time')) {
+      return "⏰ Current wait times (updated 2 minutes ago):\n\n**Magic Kingdom:**\n• Space Mountain: 15 minutes ⭐\n• Big Thunder Mountain: 25 minutes\n• Haunted Mansion: 10 minutes ⭐\n• Pirates of the Caribbean: 5 minutes ⭐\n• It's a Small World: 8 minutes\n• Seven Dwarfs Mine Train: 45 minutes\n\n**Pro Tips:**\n• Use Lightning Lane for popular rides\n• Best times: 9-11 AM and 6-8 PM\n• Avoid 12-3 PM (peak crowds)\n\nWhich attraction are you most excited about?";
+    }
+    
+    // Photos and Memories
+    else if (input.includes('photo') || input.includes('picture') || input.includes('camera') || input.includes('memory')) {
+      return "📸 Magical photo opportunities:\n\n**Best Photo Spots:**\n• Cinderella Castle (golden hour 6-7 PM)\n• Main Street USA (vintage charm)\n• Galaxy's Edge (at night with lights)\n• Tomorrowland (futuristic backdrop)\n• Adventureland (jungle vibes)\n\n**Character Photo Ops:**\n• Mickey Mouse - Town Square (10 AM-6 PM)\n• Princesses - Fairytale Hall (9 AM-8 PM)\n• Star Wars - Galaxy's Edge (all day)\n\n**PhotoPass Locations:**\n• Castle front, Main Street, Tomorrowland\n• Professional photographers available\n• Digital downloads included with Memory Maker\n\nWant me to help you plan the perfect photo route?";
+    }
+    
+    // Souvenirs and Shopping
+    else if (input.includes('souvenir') || input.includes('gift') || input.includes('shop') || input.includes('buy') || input.includes('merchandise')) {
+      return "🛍️ Best shopping destinations:\n\n**Must-Visit Shops:**\n• World of Disney (largest selection)\n• Emporium (Main Street classics)\n• Galaxy's Edge shops (Star Wars exclusives)\n• Fantasyland shops (princess items)\n\n**Exclusive Items:**\n• Limited edition pins\n• Park-specific merchandise\n• Custom ears and accessories\n• Collectible figures\n\n**Shopping Tips:**\n• Ask about exclusive park items\n• Check for limited editions\n• Use Disney Genie+ for shopping\n• Package pickup available\n\nWhat type of souvenirs are you looking for?";
+    }
+    
+    // Characters and Meet & Greets
+    else if (input.includes('character') || input.includes('meet') || input.includes('mickey') || input.includes('princess') || input.includes('disney friends')) {
+      return "🎭 Character meet & greet schedule:\n\n**Available Now:**\n• Mickey Mouse - Town Square (10 AM-6 PM)\n• Minnie Mouse - Town Square (10 AM-6 PM)\n• Goofy - Tomorrowland (11 AM-7 PM)\n• Donald Duck - Adventureland (12 PM-8 PM)\n\n**Princesses:**\n• Elsa & Anna - Fairytale Hall (9 AM-8 PM)\n• Cinderella - Fairytale Hall (9 AM-8 PM)\n• Belle - Fantasyland (10 AM-7 PM)\n\n**Star Wars:**\n• Rey - Galaxy's Edge (all day)\n• Kylo Ren - Galaxy's Edge (all day)\n• Chewbacca - Galaxy's Edge (all day)\n\n**Tips:**\n• Bring autograph books\n• Use Lightning Lane for popular characters\n• Best times: early morning or evening\n\nWhich character would you love to meet?";
+    }
+    
+    // Navigation and Directions
+    else if (input.includes('navigate') || input.includes('navigation') || input.includes('directions') || input.includes('where') || input.includes('how to get')) {
+      return "🧭 Navigation assistance:\n\n**Transportation Options:**\n• Monorail (Magic Kingdom ↔ Epcot)\n• Skyliner (Epcot ↔ Hollywood Studios)\n• Ferry boats (Magic Kingdom ↔ TTC)\n• Buses (all parks and resorts)\n\n**Walking Routes:**\n• Main Street to Fantasyland: 5 minutes\n• Tomorrowland to Adventureland: 8 minutes\n• Galaxy's Edge to Toy Story Land: 12 minutes\n\n**AR Navigation Features:**\n• Real-time directions\n• Crowd avoidance\n• Wait time integration\n• Photo spot alerts\n\n**Pro Tips:**\n• Download My Disney Experience app\n• Use Genie+ for optimal routing\n• Check park maps at entrances\n\nWhere would you like to go?";
+    }
+    
+    // Weather and Conditions
+    else if (input.includes('weather') || input.includes('rain') || input.includes('hot') || input.includes('temperature')) {
+      return "🌤️ Current park conditions:\n\n**Weather:**\n• Temperature: 78°F (perfect!)\n• Conditions: Partly cloudy\n• Rain chance: 20% (afternoon)\n• Humidity: 65%\n\n**Indoor Attractions (if needed):**\n• Haunted Mansion\n• Pirates of the Caribbean\n• It's a Small World\n• Carousel of Progress\n• Hall of Presidents\n\n**Weather Tips:**\n• Pack ponchos (cheaper than park ones)\n• Stay hydrated\n• Use indoor attractions during storms\n• Don't forget sunscreen\n• Afternoon storms usually pass quickly\n\n**Best Times Today:**\n• Morning: 9-11 AM (coolest)\n• Evening: 6-8 PM (comfortable)\n\nNeed recommendations for indoor activities?";
+    }
+    
+    // Special Events and Shows
+    else if (input.includes('show') || input.includes('parade') || input.includes('fireworks') || input.includes('event') || input.includes('entertainment')) {
+      return "🎪 Today's entertainment schedule:\n\n**Parades:**\n• Festival of Fantasy Parade - 3:00 PM\n• Mickey's Royal Friendship Faire - 12:30 PM, 2:30 PM, 4:30 PM\n\n**Fireworks:**\n• Happily Ever After - 9:00 PM\n• Best viewing: Main Street or Tomorrowland\n\n**Shows:**\n• Mickey's PhilharMagic - Every 30 minutes\n• Country Bear Jamboree - Every 45 minutes\n• Enchanted Tiki Room - Every 20 minutes\n\n**Special Events:**\n• Character Cavalcades (throughout day)\n• Street performers on Main Street\n• Galaxy's Edge shows (all day)\n\n**Pro Tips:**\n• Arrive 30 minutes early for parades\n• Use Lightning Lane for shows\n• Best parade spots: Main Street curb\n\nWhich entertainment interests you most?";
+    }
+    
+    // Help and General Questions
+    else if (input.includes('help') || input.includes('what can you do') || input.includes('capabilities')) {
+      return "🌟 I'm Mickey's Compass, your personal Disney assistant! Here's what I can help with:\n\n**Planning:**\n• Create custom itineraries\n• Optimize your park day\n• Schedule dining reservations\n• Plan character meet & greets\n\n**Real-Time Info:**\n• Current wait times\n• Weather conditions\n• Show schedules\n• Special events\n\n**Navigation:**\n• AR-guided directions\n• Crowd avoidance\n• Transportation options\n• Photo spot locations\n\n**Dining:**\n• Restaurant recommendations\n• Reservation availability\n• Menu suggestions\n• Character dining options\n\n**Shopping:**\n• Souvenir recommendations\n• Exclusive merchandise\n• Shop locations\n• Package pickup\n\nWhat would you like help with first?";
+    }
+    
+    // Default response
+    else {
+      return "✨ That's a great question! I'm Mickey's Compass, your personal magic maker at Disney Parks! I can help you with:\n\n• Planning your perfect day\n• Finding the best dining spots\n• Checking wait times\n• Meeting characters\n• Taking amazing photos\n• Shopping for souvenirs\n• Navigating the parks\n• Weather updates\n• Show schedules\n\nJust ask me anything about your Disney adventure! What magical experience are you looking for today? 🎭";
     }
   };
 
