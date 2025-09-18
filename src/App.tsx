@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import AIConcierge from './components/AIConcierge';
 import LuxuryHubFinder from './components/LuxuryHubFinder';
+import DisneyMap from './components/DisneyMap';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import { Sparkles, Star, Compass, Wand2 } from 'lucide-react';
@@ -18,6 +19,8 @@ function App() {
         return <AIConcierge />;
       case 'luxury-hubs':
         return <LuxuryHubFinder />;
+      case 'disney-map':
+        return <DisneyMap />;
       case 'my-journey':
         return <Login onLoginSuccess={() => setActiveSection('concierge')} />;
       default:
