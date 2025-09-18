@@ -13,7 +13,8 @@ import {
   Heart,
   Gift,
   Zap,
-  Music
+  Music,
+  ChevronDown
 } from 'lucide-react';
 
 interface Message {
@@ -38,6 +39,7 @@ const AIConcierge: React.FC = () => {
   const [inputText, setInputText] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -192,14 +194,47 @@ const AIConcierge: React.FC = () => {
                   exit={{ opacity: 0, y: -20 }}
                   className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-xs lg:max-w-lg px-5 py-4 rounded-2xl ${
+                  <div className={`max-w-xs lg:max-w-2xl px-6 py-5 rounded-2xl ${
                     message.isUser 
                       ? 'bg-gradient-compass text-white shadow-lg' 
-                      : 'bg-white/10 text-white border border-white/20 backdrop-blur-sm'
+                      : 'bg-white/15 text-white border border-white/25 backdrop-blur-sm shadow-lg'
                   }`}>
-                    <p className="text-base leading-relaxed font-medium">{message.text}</p>
-                    <p className={`text-xs mt-3 ${
-                      message.isUser ? 'text-white/70' : 'text-slate-light'
+                    <div className={`text-base leading-relaxed ${
+                      message.isUser ? 'font-medium' : 'font-normal'
+                    }`}>
+                      {message.isUser ? (
+                        <p>{message.text}</p>
+                      ) : (
+                        <div className="space-y-3">
+                          {message.text.split('\n').map((line, index) => {
+                            if (line.startsWith('**') && line.endsWith('**')) {
+                              return (
+                                <h4 key={index} className="text-lg font-semibold text-disney-gold mt-4 mb-2">
+                                  {line.replace(/\*\*/g, '')}
+                                </h4>
+                              );
+                            } else if (line.startsWith('•')) {
+                              return (
+                                <div key={index} className="flex items-start space-x-2">
+                                  <span className="text-disney-gold mt-1">•</span>
+                                  <span className="text-white/90">{line.substring(1).trim()}</span>
+                                </div>
+                              );
+                            } else if (line.trim() === '') {
+                              return <br key={index} />;
+                            } else {
+                              return (
+                                <p key={index} className="text-white/90">
+                                  {line}
+                                </p>
+                              );
+                            }
+                          })}
+                        </div>
+                      )}
+                    </div>
+                    <p className={`text-xs mt-4 ${
+                      message.isUser ? 'text-white/70' : 'text-white/60'
                     }`}>
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
@@ -250,42 +285,55 @@ const AIConcierge: React.FC = () => {
             </div>
           </div>
 
-          {/* Input Area */}
+          {/* Suggested Prompts Dropdown */}
           <div className="border-t border-white/10 p-4">
-            <div className="flex items-center space-x-3">
-              <div className="flex-1 relative">
-                <input
-                  type="text"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputText)}
-                  placeholder="Ask me anything about your magical Disney adventure..."
-                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-light focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-base"
+            <div className="relative">
+              <motion.button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full flex items-center justify-between px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 hover:border-disney-gold/30 transition-all duration-300 text-base"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="text-slate-light">Choose a prompt to get started...</span>
+                <ChevronDown 
+                  size={20} 
+                  className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
-              </div>
+              </motion.button>
               
-              <motion.button
-                onClick={toggleListening}
-                className={`p-4 rounded-xl transition-all duration-300 ${
-                  isListening 
-                    ? 'bg-red-500/20 border border-red-500/50 text-red-400' 
-                    : 'bg-white/5 border border-white/10 text-slate-light hover:text-white hover:border-disney-gold/50'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {isListening ? <MicOff size={20} /> : <Mic size={20} />}
-              </motion.button>
-
-              <motion.button
-                onClick={() => handleSendMessage(inputText)}
-                disabled={!inputText.trim()}
-                className="p-4 bg-gradient-compass text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Send size={20} />
-              </motion.button>
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-10"
+                  >
+                    <div className="p-2 space-y-1">
+                      {quickActions.map((action, index) => {
+                        const Icon = action.icon;
+                        return (
+                          <motion.button
+                            key={index}
+                            onClick={() => {
+                              handleQuickAction(action.action);
+                              setIsDropdownOpen(false);
+                            }}
+                            className="w-full flex items-center space-x-3 px-4 py-3 text-left text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+                            whileHover={{ x: 4 }}
+                          >
+                            <Icon size={18} className="text-disney-gold" />
+                            <div>
+                              <div className="font-medium">{action.label}</div>
+                              <div className="text-sm text-slate-light">{action.action}</div>
+                            </div>
+                          </motion.button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </motion.div>
