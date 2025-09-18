@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import AIConcierge from './components/AIConcierge';
-import LuxuryHubFinder from './components/LuxuryHubFinder';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import { Sparkles, Star, Compass, Wand2 } from 'lucide-react';
@@ -16,8 +15,6 @@ function App() {
     switch (activeSection) {
       case 'concierge':
         return <AIConcierge />;
-      case 'luxury-hubs':
-        return <LuxuryHubFinder />;
       case 'my-journey':
         return <Login onLoginSuccess={() => setActiveSection('concierge')} />;
       default:
