@@ -11,7 +11,10 @@ import {
   Gift,
   Zap,
   Music,
-  ChevronDown
+  ChevronDown,
+  Search,
+  Send,
+  X
 } from 'lucide-react';
 
 interface Message {
@@ -35,7 +38,11 @@ const AIConcierge: React.FC = () => {
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -44,6 +51,17 @@ const AIConcierge: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Auto-focus search input on mobile when component mounts
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile && searchInputRef.current) {
+      // Small delay to ensure component is fully rendered
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 500);
+    }
+  }, []);
 
   const quickActions = [
     { icon: MapPin, label: "Plan My Day", action: "Create a personalized itinerary for my park visit" },
@@ -70,6 +88,7 @@ const AIConcierge: React.FC = () => {
 
     setMessages(prev => [...prev, userMessage]);
     setIsTyping(true);
+    setSearchInput(''); // Clear search input after sending
 
     // Simulate AI response with more realistic timing
     setTimeout(() => {
@@ -83,6 +102,37 @@ const AIConcierge: React.FC = () => {
       setMessages(prev => [...prev, aiResponse]);
       setIsTyping(false);
     }, 800 + Math.random() * 1200); // 0.8-2 second delay for more natural feel
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchInput.trim()) {
+      handleSendMessage(searchInput);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSearchSubmit(e);
+    }
+  };
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchInput(value);
+    setShowSearchSuggestions(value.length > 0 && isSearchFocused);
+  };
+
+  const handleSearchFocus = () => {
+    setIsSearchFocused(true);
+    setShowSearchSuggestions(searchInput.length > 0);
+  };
+
+  const handleSearchBlur = () => {
+    setIsSearchFocused(false);
+    // Delay hiding suggestions to allow clicking on them
+    setTimeout(() => setShowSearchSuggestions(false), 200);
   };
 
   const generateAIResponse = (userInput: string): string => {
@@ -253,29 +303,92 @@ const AIConcierge: React.FC = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Quick Actions */}
+          {/* Mobile Search Input */}
           <div className="border-t border-white/10 p-3 sm:p-4">
-            <p className="text-sm sm:text-base text-slate-light mb-3 sm:mb-4 font-medium">Quick Actions:</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-              {quickActions.map((action, index) => {
-                const Icon = action.icon;
-                return (
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchInput}
+                  onChange={handleSearchInputChange}
+                  onKeyPress={handleKeyPress}
+                  onFocus={handleSearchFocus}
+                  onBlur={handleSearchBlur}
+                  placeholder="Ask Mickey's Compass anything..."
+                  className="w-full pl-10 pr-12 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-base touch-manipulation min-h-[48px]"
+                />
+                {searchInput && (
                   <motion.button
-                    key={index}
-                    onClick={() => handleQuickAction(action.action)}
-                    className="flex items-center space-x-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-disney-gold/30 rounded-xl transition-all duration-300 text-white text-xs sm:text-sm font-medium touch-manipulation min-h-[44px]"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    type="button"
+                    onClick={() => {
+                      setSearchInput('');
+                      setShowSearchSuggestions(false);
+                    }}
+                    className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
-                    <Icon size={14} className="sm:w-4 sm:h-4" />
-                    <span className="truncate">{action.label}</span>
+                    <X size={16} />
+                  </motion.button>
+                )}
+                <motion.button
+                  type="submit"
+                  disabled={!searchInput.trim()}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 bg-gradient-to-r from-sky-300 to-blue-400 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                  whileHover={{ scale: searchInput.trim() ? 1.05 : 1 }}
+                  whileTap={{ scale: searchInput.trim() ? 0.95 : 1 }}
+                >
+                  <Send size={16} />
+                </motion.button>
+              </div>
+              
+              {/* Search Suggestions */}
+              <AnimatePresence>
+                {showSearchSuggestions && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-30"
+                  >
+                    <div className="p-2 space-y-1">
+                      {quickActions
+                        .filter(action => 
+                          action.label.toLowerCase().includes(searchInput.toLowerCase()) ||
+                          action.action.toLowerCase().includes(searchInput.toLowerCase())
+                        )
+                        .slice(0, 3)
+                        .map((action, index) => {
+                          const Icon = action.icon;
+                          return (
+                            <motion.button
+                              key={index}
+                              onClick={() => {
+                                handleQuickAction(action.action);
+                                setSearchInput('');
+                                setShowSearchSuggestions(false);
+                              }}
+                              className="w-full flex items-center space-x-3 px-3 py-2.5 text-left text-white hover:bg-white/10 rounded-lg transition-all duration-200 touch-manipulation"
+                              whileHover={{ x: 4 }}
+                            >
+                              <Icon size={16} className="text-disney-gold" />
+                              <div className="flex-1 min-w-0">
+                                <div className="font-medium text-sm truncate">{action.label}</div>
+                                <div className="text-xs text-slate-light truncate">{action.action}</div>
+                              </div>
                   </motion.button>
                 );
               })}
             </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </form>
           </div>
 
-          {/* Suggested Prompts Dropdown */}
+          {/* Quick Actions Dropdown */}
           <div className="border-t border-white/10 p-3 sm:p-4">
             <div className="relative">
               <motion.button
@@ -284,40 +397,51 @@ const AIConcierge: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="text-slate-light text-left">Choose a prompt to get started...</span>
+                <div className="flex items-center space-x-2">
+                  <Wand2 size={18} className="text-disney-gold" />
+                  <span className="text-slate-light text-left">Quick Actions & Prompts</span>
+                </div>
                 <ChevronDown 
                   size={18} 
                   className={`transition-transform duration-300 sm:w-5 sm:h-5 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
               </motion.button>
-              
+
               <AnimatePresence>
                 {isDropdownOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-10"
+                    className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-20 max-h-80 overflow-hidden"
                   >
-                    <div className="p-2 space-y-1 max-h-60 overflow-y-auto">
+                    <div className="p-2 space-y-1 overflow-y-auto max-h-72">
+                      <div className="px-3 py-2 text-xs font-semibold text-disney-gold uppercase tracking-wide border-b border-white/10 mb-2">
+                        Popular Questions
+                      </div>
                       {quickActions.map((action, index) => {
                         const Icon = action.icon;
                         return (
-                          <motion.button
+              <motion.button
                             key={index}
                             onClick={() => {
                               handleQuickAction(action.action);
                               setIsDropdownOpen(false);
                             }}
-                            className="w-full flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 py-2.5 sm:py-3 text-left text-white hover:bg-white/10 rounded-lg transition-all duration-200 touch-manipulation min-h-[44px]"
+                            className="w-full flex items-center space-x-3 px-3 py-3 text-left text-white hover:bg-white/10 rounded-lg transition-all duration-200 touch-manipulation min-h-[48px] group"
                             whileHover={{ x: 4 }}
                           >
-                            <Icon size={16} className="text-disney-gold sm:w-4 sm:h-4" />
+                            <div className="flex-shrink-0">
+                              <Icon size={18} className="text-disney-gold group-hover:scale-110 transition-transform duration-200" />
+                            </div>
                             <div className="flex-1 min-w-0">
                               <div className="font-medium text-sm sm:text-base truncate">{action.label}</div>
-                              <div className="text-xs sm:text-sm text-slate-light truncate">{action.action}</div>
+                              <div className="text-xs sm:text-sm text-slate-light truncate mt-0.5">{action.action}</div>
                             </div>
-                          </motion.button>
+                            <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                              <Send size={14} className="text-disney-gold" />
+                            </div>
+              </motion.button>
                         );
                       })}
                     </div>
