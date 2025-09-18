@@ -105,15 +105,11 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             ].map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <motion.div
+                <div
                   key={index}
                   className="card group"
-                  whileHover={{ y: -8, scale: 1.03 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1 + index * 0.2 }}
                 >
-                  <div className="flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-compass rounded-2xl group-hover:animate-glow shadow-lg">
+                  <div className="flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-compass rounded-2xl shadow-lg">
                     <Icon className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="luxury-text text-2xl font-semibold text-white mb-4 text-center">
@@ -122,7 +118,7 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
                   <p className="text-slate-light text-center leading-relaxed text-lg">
                     {feature.description}
                   </p>
-                </motion.div>
+                </div>
               );
             })}
           </motion.div>

@@ -98,7 +98,7 @@ const Features: React.FC<FeaturesProps> = ({ onNavigateToSection }) => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="luxury-text text-4xl md:text-5xl font-bold bg-gradient-disney bg-clip-text text-transparent mb-6">
+          <h2 className="luxury-text text-4xl md:text-5xl font-bold text-white mb-6">
             Magical Features
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
