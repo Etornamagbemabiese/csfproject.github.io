@@ -150,20 +150,20 @@ const AIConcierge: React.FC = () => {
 
 
   return (
-    <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 min-h-screen">
+    <div className="pt-20 sm:pt-24 pb-6 sm:pb-8 px-3 sm:px-6 lg:px-8 min-h-screen">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
         >
-          <div className="flex items-center justify-center mb-6">
-            <Compass className="w-12 h-12 text-disney-gold mr-4 animate-compass-spin drop-shadow-lg" />
-            <h1 className="luxury-text text-4xl font-bold bg-gradient-hero bg-clip-text text-transparent drop-shadow-lg">Mickey's Compass</h1>
-            <Wand2 className="w-12 h-12 text-magic-sparkle ml-4 animate-wand-sparkle drop-shadow-lg" />
+          <div className="flex flex-col sm:flex-row items-center justify-center mb-4 sm:mb-6 gap-2 sm:gap-4">
+            <Compass className="w-10 h-10 sm:w-12 sm:h-12 text-disney-gold animate-compass-spin drop-shadow-lg order-1 sm:order-1" />
+            <h1 className="luxury-text text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-hero bg-clip-text text-transparent drop-shadow-lg order-2 sm:order-2">Mickey's Compass</h1>
+            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 text-magic-sparkle animate-wand-sparkle drop-shadow-lg order-3 sm:order-3" />
           </div>
-          <p className="text-xl text-slate-light font-medium">Your personal magic maker at Disney Parks</p>
+          <p className="text-base sm:text-lg md:text-xl text-slate-light font-medium px-2">Your personal magic maker at Disney Parks</p>
         </motion.div>
 
         {/* Chat Container */}
@@ -171,10 +171,10 @@ const AIConcierge: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="card-elevated rounded-3xl border border-white/20 overflow-hidden"
+          className="card-elevated rounded-2xl sm:rounded-3xl border border-white/20 overflow-hidden"
         >
           {/* Messages */}
-          <div className="h-96 overflow-y-auto p-6 space-y-4">
+          <div className="h-80 sm:h-96 overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4">
             <AnimatePresence>
               {messages.map((message) => (
                 <motion.div
@@ -184,12 +184,12 @@ const AIConcierge: React.FC = () => {
                   exit={{ opacity: 0, y: -20 }}
                   className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-xs lg:max-w-2xl px-6 py-5 rounded-2xl ${
+                  <div className={`max-w-xs sm:max-w-sm lg:max-w-2xl px-4 sm:px-6 py-3 sm:py-5 rounded-2xl ${
                     message.isUser 
                       ? 'bg-gradient-compass text-white shadow-lg' 
                       : 'bg-white/15 text-white border border-white/25 backdrop-blur-sm shadow-lg'
                   }`}>
-                    <div className={`text-base leading-relaxed ${
+                    <div className={`text-sm sm:text-base leading-relaxed ${
                       message.isUser ? 'font-medium' : 'font-normal'
                     }`}>
                       {message.isUser ? (
@@ -199,22 +199,22 @@ const AIConcierge: React.FC = () => {
                           {message.text.split('\n').map((line, index) => {
                             if (line.startsWith('**') && line.endsWith('**')) {
                               return (
-                                <h4 key={index} className="text-lg font-semibold text-disney-gold mt-4 mb-2">
+                                <h4 key={index} className="text-base sm:text-lg font-semibold text-disney-gold mt-3 sm:mt-4 mb-1 sm:mb-2">
                                   {line.replace(/\*\*/g, '')}
                                 </h4>
                               );
                             } else if (line.startsWith('•')) {
                               return (
                                 <div key={index} className="flex items-start space-x-2">
-                                  <span className="text-disney-gold mt-1">•</span>
-                                  <span className="text-white/90">{line.substring(1).trim()}</span>
+                                  <span className="text-disney-gold mt-0.5 sm:mt-1 text-sm sm:text-base">•</span>
+                                  <span className="text-white/90 text-sm sm:text-base">{line.substring(1).trim()}</span>
                                 </div>
                               );
                             } else if (line.trim() === '') {
                               return <br key={index} />;
                             } else {
                               return (
-                                <p key={index} className="text-white/90">
+                                <p key={index} className="text-white/90 text-sm sm:text-base">
                                   {line}
                                 </p>
                               );
@@ -223,7 +223,7 @@ const AIConcierge: React.FC = () => {
                         </div>
                       )}
                     </div>
-                    <p className={`text-xs mt-4 ${
+                    <p className={`text-xs mt-2 sm:mt-4 ${
                       message.isUser ? 'text-white/70' : 'text-white/60'
                     }`}>
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -240,10 +240,10 @@ const AIConcierge: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-start"
               >
-                <div className="bg-white/10 text-white border border-white/20 px-5 py-4 rounded-2xl backdrop-blur-sm">
-                  <div className="flex items-center space-x-3">
-                    <Wand2 className="w-5 h-5 text-disney-gold animate-wand-sparkle" />
-                    <span className="text-base font-medium">Mickey's Compass is thinking...</span>
+                <div className="bg-white/10 text-white border border-white/20 px-4 sm:px-5 py-3 sm:py-4 rounded-2xl backdrop-blur-sm">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <Wand2 className="w-4 h-4 sm:w-5 sm:h-5 text-disney-gold animate-wand-sparkle" />
+                    <span className="text-sm sm:text-base font-medium">Mickey's Compass is thinking...</span>
                     <div className="loading-dots"></div>
                   </div>
                 </div>
@@ -254,21 +254,21 @@ const AIConcierge: React.FC = () => {
           </div>
 
           {/* Quick Actions */}
-          <div className="border-t border-white/10 p-4">
-            <p className="text-base text-slate-light mb-4 font-medium">Quick Actions:</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          <div className="border-t border-white/10 p-3 sm:p-4">
+            <p className="text-sm sm:text-base text-slate-light mb-3 sm:mb-4 font-medium">Quick Actions:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
               {quickActions.map((action, index) => {
                 const Icon = action.icon;
                 return (
                   <motion.button
                     key={index}
                     onClick={() => handleQuickAction(action.action)}
-                    className="flex items-center space-x-2 px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-disney-gold/30 rounded-xl transition-all duration-300 text-white text-sm font-medium"
+                    className="flex items-center space-x-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-disney-gold/30 rounded-xl transition-all duration-300 text-white text-xs sm:text-sm font-medium touch-manipulation min-h-[44px]"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Icon size={16} />
-                    <span>{action.label}</span>
+                    <Icon size={14} className="sm:w-4 sm:h-4" />
+                    <span className="truncate">{action.label}</span>
                   </motion.button>
                 );
               })}
@@ -276,18 +276,18 @@ const AIConcierge: React.FC = () => {
           </div>
 
           {/* Suggested Prompts Dropdown */}
-          <div className="border-t border-white/10 p-4">
+          <div className="border-t border-white/10 p-3 sm:p-4">
             <div className="relative">
               <motion.button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-full flex items-center justify-between px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 hover:border-disney-gold/30 transition-all duration-300 text-base"
+                className="w-full flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 hover:border-disney-gold/30 transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[48px]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="text-slate-light">Choose a prompt to get started...</span>
+                <span className="text-slate-light text-left">Choose a prompt to get started...</span>
                 <ChevronDown 
-                  size={20} 
-                  className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                  size={18} 
+                  className={`transition-transform duration-300 sm:w-5 sm:h-5 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
               </motion.button>
               
@@ -299,7 +299,7 @@ const AIConcierge: React.FC = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-10"
                   >
-                    <div className="p-2 space-y-1">
+                    <div className="p-2 space-y-1 max-h-60 overflow-y-auto">
                       {quickActions.map((action, index) => {
                         const Icon = action.icon;
                         return (
@@ -309,13 +309,13 @@ const AIConcierge: React.FC = () => {
                               handleQuickAction(action.action);
                               setIsDropdownOpen(false);
                             }}
-                            className="w-full flex items-center space-x-3 px-4 py-3 text-left text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+                            className="w-full flex items-center space-x-2 sm:space-x-3 px-3 sm:px-4 py-2.5 sm:py-3 text-left text-white hover:bg-white/10 rounded-lg transition-all duration-200 touch-manipulation min-h-[44px]"
                             whileHover={{ x: 4 }}
                           >
-                            <Icon size={18} className="text-disney-gold" />
-                            <div>
-                              <div className="font-medium">{action.label}</div>
-                              <div className="text-sm text-slate-light">{action.action}</div>
+                            <Icon size={16} className="text-disney-gold sm:w-4 sm:h-4" />
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium text-sm sm:text-base truncate">{action.label}</div>
+                              <div className="text-xs sm:text-sm text-slate-light truncate">{action.action}</div>
                             </div>
                           </motion.button>
                         );

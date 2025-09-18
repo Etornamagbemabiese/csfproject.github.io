@@ -59,21 +59,21 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   ];
 
   return (
-    <div className="pt-20 sm:pt-32 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 min-h-screen">
+    <div className="pt-16 sm:pt-20 md:pt-32 pb-12 sm:pb-16 md:pb-24 px-3 sm:px-6 lg:px-8 min-h-screen">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
         >
-          <div className="flex items-center justify-center mb-6">
-            <Compass className="w-12 h-12 text-disney-gold mr-4" />
-            <h1 className="font-disney text-4xl text-white">My Journey</h1>
-            <Wand2 className="w-12 h-12 text-disney-gold ml-4" />
+          <div className="flex flex-col sm:flex-row items-center justify-center mb-4 sm:mb-6 gap-2 sm:gap-4">
+            <Compass className="w-10 h-10 sm:w-12 sm:h-12 text-disney-gold order-1 sm:order-1" />
+            <h1 className="font-disney text-3xl sm:text-4xl text-white order-2 sm:order-2">My Journey</h1>
+            <Wand2 className="w-10 h-10 sm:w-12 sm:h-12 text-disney-gold order-3 sm:order-3" />
           </div>
-          <p className="text-lg text-gray-400 font-quicksand">
+          <p className="text-base sm:text-lg text-gray-400 font-quicksand px-2">
             Connect with your Disney account to unlock personalized magic
           </p>
         </motion.div>
@@ -83,11 +83,11 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex bg-white/5 rounded-xl p-1 mb-8 border border-white/10"
+          className="flex bg-white/5 rounded-xl p-1 mb-6 sm:mb-8 border border-white/10"
         >
           <button
             onClick={() => setIsLogin(true)}
-            className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
+            className={`flex-1 py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[48px] ${
               isLogin 
                 ? 'bg-white text-black' 
                 : 'text-white hover:bg-white/10'
@@ -97,7 +97,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           </button>
           <button
             onClick={() => setIsLogin(false)}
-            className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${
+            className={`flex-1 py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[48px] ${
               !isLogin 
                 ? 'bg-white text-black' 
                 : 'text-white hover:bg-white/10'
@@ -112,23 +112,23 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="glass-effect p-8 rounded-2xl border border-white/10"
+          className="glass-effect p-6 sm:p-8 rounded-2xl border border-white/10"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Email */}
             <div>
               <label className="block text-sm font-medium text-white mb-2">
                 Disney Account Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your.email@disney.com"
-                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
+                  className="w-full pl-10 pr-4 py-3 sm:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-base touch-manipulation min-h-[48px]"
                   required
                 />
               </div>
