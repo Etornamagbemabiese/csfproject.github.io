@@ -6,29 +6,37 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Mickey's Compass Brand Colors
-        'disney-blue': '#0a57a3',
-        'disney-blue-light': '#1e6bb8',
-        'disney-blue-dark': '#084a8a',
+        // Magical Disney Palette
+        'disney-blue': '#1e3a8a',
+        'disney-blue-light': '#3b82f6',
+        'disney-blue-dark': '#1e40af',
         'disney-gold': '#FFD700',
         'disney-gold-light': '#FFE55C',
         'disney-gold-dark': '#B8860B',
+        'magic-purple': '#8B5CF6',
+        'magic-pink': '#FF69B4',
+        'magic-orange': '#FFA500',
+        'castle-silver': '#E2E8F0',
+        'wand-purple': '#9370DB',
+        'sparkle-gold': '#FFD700',
+        'soft-pink': '#FFB6C1',
+        'royal-blue': '#1e40af',
+        'deep-purple': '#302b63',
+        'midnight-blue': '#0f0c29',
+        // Neutral colors
         'slate-gray': '#475569',
         'slate-light': '#64748b',
         'slate-dark': '#334155',
         'neutral-black': '#1e293b',
         'neutral-white': '#f8fafc',
-        // Accent colors
-        'magic-sparkle': '#FFD700',
-        'castle-silver': '#C0C0C0',
-        'wand-purple': '#8B5CF6',
       },
       fontFamily: {
         'disney': ['Fredoka One', 'cursive'],
         'disney-body': ['Fredoka', 'sans-serif'],
         'luxury': ['Fredoka One', 'cursive'],
-        'modern': ['Inter', 'sans-serif'],
+        'modern': ['Nunito', 'sans-serif'],
         'quicksand': ['Quicksand', 'sans-serif'],
+        'nunito': ['Nunito', 'sans-serif'],
       },
       animation: {
         'sparkle': 'sparkle 2s ease-in-out infinite',

@@ -150,7 +150,7 @@ const LuxuryHubFinder: React.FC = () => {
             <h1 className="luxury-text text-3xl font-bold bg-gradient-disney bg-clip-text text-transparent">Luxury Hub Finder</h1>
             <MapPin className="w-8 h-8 text-disney-blue ml-3" />
           </div>
-          <p className="text-gray-400">Find the nearest luxury dining and relaxation spots</p>
+          <p className="text-gray-400">Type in where you want to go and discover magical experiences nearby</p>
         </motion.div>
 
         {/* Search Section */}

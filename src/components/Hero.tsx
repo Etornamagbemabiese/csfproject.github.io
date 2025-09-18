@@ -18,18 +18,18 @@ const Hero: React.FC<HeroProps> = ({ onGetStarted }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-12 sm:mb-16"
           >
-            <div className="flex items-center justify-center mb-6 sm:mb-8">
-              <Compass className="w-8 h-8 sm:w-12 sm:h-12 text-white mr-3 sm:mr-6 opacity-80" />
-              <h1 className="font-disney text-3xl sm:text-5xl md:text-7xl text-white tracking-wide">
+            <div className="flex items-center justify-center mb-8 sm:mb-10">
+              <Compass className="w-10 h-10 sm:w-14 sm:h-14 text-disney-gold mr-4 sm:mr-8 animate-compass-spin drop-shadow-lg" />
+              <h1 className="font-disney text-4xl sm:text-6xl md:text-8xl magical-text tracking-wide">
                 Mickey's Compass
               </h1>
-              <Wand2 className="w-8 h-8 sm:w-12 sm:h-12 text-white ml-3 sm:ml-6 opacity-80" />
+              <Wand2 className="w-10 h-10 sm:w-14 sm:h-14 text-magic-pink ml-4 sm:ml-8 animate-wand-sparkle drop-shadow-lg" />
             </div>
-            <p className="font-disney-body text-xl sm:text-2xl md:text-3xl text-white max-w-4xl mx-auto leading-relaxed font-medium mb-4 sm:mb-6 px-4">
-              Your Personal Magic Maker at Disney Parks
+            <p className="font-disney-body text-2xl sm:text-3xl md:text-4xl text-white max-w-4xl mx-auto leading-relaxed font-medium mb-6 sm:mb-8 px-4">
+              Your Personal <span className="sparkle-text magical-text">Magic</span> Maker at Disney Parks
             </p>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-quicksand px-4">
-              Transform overwhelming Disney planning into magical adventures with AI-powered guidance
+            <p className="text-lg sm:text-xl md:text-2xl text-castle-silver max-w-4xl mx-auto leading-relaxed font-nunito px-4">
+              Transform overwhelming Disney planning into <span className="magical-text">magical adventures</span> with AI-powered guidance
             </p>
           </motion.div>
 

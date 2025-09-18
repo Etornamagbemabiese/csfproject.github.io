@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, Home, MessageCircle, User, Settings, X, MapPin, Wand2, Map } from 'lucide-react';
+import { Compass, Home, MessageCircle, User, X, MapPin, Wand2 } from 'lucide-react';
 
 interface HeaderProps {
   activeSection: string;
@@ -13,10 +13,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'concierge', label: 'Magic Guide', icon: MessageCircle },
-    { id: 'disney-map', label: 'Disney Map', icon: Map },
     { id: 'luxury-hubs', label: 'Parks & Resorts', icon: MapPin },
     { id: 'my-journey', label: 'My Journey', icon: User },
-    { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
   return (
