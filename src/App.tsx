@@ -21,7 +21,7 @@ function App() {
         return (
           <>
             <Hero onGetStarted={() => setActiveSection('concierge')} />
-            <Features />
+            <Features onNavigateToSection={setActiveSection} />
           </>
         );
     }

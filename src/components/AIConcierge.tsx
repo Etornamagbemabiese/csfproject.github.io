@@ -96,6 +96,8 @@ const AIConcierge: React.FC = () => {
       return "Great timing to ask! 🕐 Here's the current magic: Space Mountain (15 min - perfect!), Big Thunder Mountain (25 min), Haunted Mansion (10 min - spooky fun!), and It's a Small World (5 min - a classic!). Pro tip: the parade is the perfect time to hit those popular attractions!";
     } else if (input.includes('photo') || input.includes('picture') || input.includes('magical photo')) {
       return "Oh, you're going to love these spots! 📸✨ Cinderella Castle has that perfect golden hour lighting right now, Main Street USA has that vintage charm, and Tomorrowland gives you that futuristic backdrop! I can also help you find the best character meet-and-greets for those magical memories!";
+    } else if (input.includes('souvenir') || input.includes('gift') || input.includes('shop') || input.includes('buy')) {
+      return "🛍️ Best souvenir spots: World of Disney (largest selection), Emporium on Main Street, and don't miss the new shops in Galaxy's Edge! Pro tip: Ask about exclusive park merchandise and check for limited edition items!";
     } else if (input.includes('character') || input.includes('disney friends')) {
       return "Your Disney friends are ready to meet you! 🎭 Mickey Mouse is at Town Square (10 AM - 6 PM), Elsa & Anna are at Princess Fairytale Hall (9 AM - 8 PM), and Buzz Lightyear is in Tomorrowland (11 AM - 7 PM). Don't forget to bring your autograph book!";
     } else if (input.includes('navigate') || input.includes('navigation')) {
