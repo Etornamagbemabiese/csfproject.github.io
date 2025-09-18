@@ -160,13 +160,6 @@ const Footer: React.FC = () => {
                   placeholder="Enter your email for magical updates"
                   className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-enchanted-gold/50 focus:ring-2 focus:ring-enchanted-gold/20 transition-all duration-300 text-sm"
                 />
-                <motion.button
-                  className="px-6 py-2 bg-gradient-royal text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 text-sm"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Subscribe
-                </motion.button>
               </div>
             </div>
           </motion.div>

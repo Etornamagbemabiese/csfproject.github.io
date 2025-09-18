@@ -9,8 +9,6 @@ import {
   Wine, 
   Search,
   Navigation,
-  Phone,
-  Heart,
   Crown
 } from 'lucide-react';
 
@@ -280,32 +278,6 @@ const LuxuryHubFinder: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <motion.button
-                          className="flex items-center space-x-1 text-disney-blue hover:text-luxury-gold transition-colors duration-300"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          <Navigation size={16} />
-                          <span className="text-sm">Directions</span>
-                        </motion.button>
-                        <motion.button
-                          className="flex items-center space-x-1 text-disney-blue hover:text-luxury-gold transition-colors duration-300"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          <Phone size={16} />
-                          <span className="text-sm">Call</span>
-                        </motion.button>
-                      </div>
-                      <motion.button
-                        className="p-2 bg-gradient-luxury-blue text-white rounded-lg hover:shadow-lg transition-all duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Heart size={16} />
-                      </motion.button>
-                    </div>
                   </motion.div>
                 ))}
               </div>

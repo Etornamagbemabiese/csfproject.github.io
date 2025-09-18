@@ -154,13 +154,6 @@ const Features: React.FC = () => {
             <p className="text-gray-300 mb-6">
               Join thousands of adventurers who have experienced the enchantment with our mystical guide
             </p>
-            <motion.button
-              className="px-8 py-3 bg-gradient-royal text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Begin Your Quest
-            </motion.button>
           </div>
         </motion.div>
       </div>
