@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
     { id: 'home', label: 'Home', icon: Home },
     { id: 'concierge', label: 'Magic Guide', icon: MessageCircle },
     { id: 'luxury-hubs', label: 'Parks & Resorts', icon: MapPin },
-    { id: 'profile', label: 'My Journey', icon: User },
+    { id: 'my-journey', label: 'My Journey', icon: User },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
 
