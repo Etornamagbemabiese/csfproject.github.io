@@ -52,6 +52,7 @@ const AIConcierge: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
+
   // Auto-focus search input on mobile when component mounts
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
@@ -216,12 +217,55 @@ const AIConcierge: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl text-slate-light font-medium px-2">Your personal magic maker at Disney Parks</p>
         </motion.div>
 
+        {/* Prompt Suggestions - Only show if no user messages yet */}
+        {messages.filter(msg => msg.isUser).length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-6 sm:mb-8"
+          >
+          <div className="text-center mb-4">
+            <h2 className="text-lg sm:text-xl font-semibold text-white mb-2">Try asking me:</h2>
+            <p className="text-sm sm:text-base text-slate-light">Click any prompt below to get started!</p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {[
+              "Plan my perfect Disney day",
+              "What are the current wait times?",
+              "Find me dining reservations",
+              "Where can I meet Mickey Mouse?",
+              "Show me the best photo spots",
+              "What's the weather like today?"
+            ].map((prompt, index) => (
+              <motion.button
+                key={index}
+                onClick={() => handleSendMessage(prompt)}
+                className="p-3 sm:p-4 bg-white/10 border border-white/20 rounded-xl text-white hover:bg-white/20 hover:border-disney-gold/50 transition-all duration-300 text-left group"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+              >
+                <div className="flex items-center space-x-2">
+                  <Wand2 size={16} className="text-disney-gold group-hover:animate-wand-sparkle" />
+                  <span className="text-sm sm:text-base font-medium">{prompt}</span>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+          </motion.div>
+        )}
+
         {/* Chat Container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="card-elevated rounded-2xl sm:rounded-3xl border border-white/20 overflow-hidden"
+          className="card-elevated rounded-2xl sm:rounded-3xl border border-white/20 overflow-visible"
         >
           {/* Messages */}
           <div className="h-80 sm:h-96 overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4">
@@ -413,9 +457,9 @@ const AIConcierge: React.FC = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-20 max-h-80 overflow-hidden"
+                    className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-50 max-h-96 overflow-hidden"
                   >
-                    <div className="p-2 space-y-1 overflow-y-auto max-h-72">
+                    <div className="p-2 space-y-1 overflow-y-auto max-h-80">
                       <div className="px-3 py-2 text-xs font-semibold text-disney-gold uppercase tracking-wide border-b border-white/10 mb-2">
                         Popular Questions
                       </div>
