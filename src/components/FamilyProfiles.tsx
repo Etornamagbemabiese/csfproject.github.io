@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Users, 
   UserPlus, 
   Edit3, 
   Trash2, 
@@ -9,10 +8,8 @@ import {
   Heart,
   Star,
   AlertTriangle,
-  CheckCircle,
   Compass,
   Wand2,
-  Camera,
   Calendar,
   Utensils,
   MapPin

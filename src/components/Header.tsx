@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, Search, ChevronDown, X, Map, Users, Utensils, Calendar, Clock, MessageCircle, User } from 'lucide-react';
+import { Compass, Search, ChevronDown, X, Users, Clock, User } from 'lucide-react';
 
 interface HeaderProps {
   activeSection: string;

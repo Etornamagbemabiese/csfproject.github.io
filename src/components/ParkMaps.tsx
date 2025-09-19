@@ -1,27 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Map, 
-  MapPin, 
   Navigation, 
   Clock, 
-  Users, 
   Star,
-  Filter,
   Search,
   Compass,
-  Wand2,
-  Info,
-  ArrowRight,
-  Zap,
-  Heart,
-  Camera,
-  Utensils,
-  ShoppingBag,
-  Wifi,
-  Car,
-  Bus,
-  Train
+  Wand2
 } from 'lucide-react';
 
 interface MapLocation {
@@ -59,11 +44,6 @@ const ParkMaps: React.FC = () => {
     status: 'all',
     search: ''
   });
-  const [route, setRoute] = useState<{from: MapLocation | null, to: MapLocation | null}>({from: null, to: null});
-  const [showRoute, setShowRoute] = useState(false);
-  const [userLocation, setUserLocation] = useState<{x: number, y: number} | null>(null);
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [recentLocations, setRecentLocations] = useState<string[]>([]);
 
   const parkMaps: ParkMap[] = [
     {

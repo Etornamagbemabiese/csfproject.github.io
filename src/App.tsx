@@ -13,7 +13,6 @@ import FamilyProfiles from './components/FamilyProfiles';
 import AIConcierge from './components/AIConcierge';
 import Login from './components/Login';
 import Footer from './components/Footer';
-import { Sparkles, Star, Compass, Wand2 } from 'lucide-react';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');

@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Utensils, 
   MapPin, 
-  Clock, 
   Users, 
   Star, 
-  DollarSign,
   Calendar,
   CheckCircle,
   ArrowRight,
   Compass,
   Wand2,
-  Filter,
   Search
 } from 'lucide-react';
 
@@ -34,7 +30,7 @@ interface DiningReservation {
 }
 
 const DiningReservations: React.FC = () => {
-  const [reservations, setReservations] = useState<DiningReservation[]>([
+  const [reservations] = useState<DiningReservation[]>([
     {
       id: '1',
       name: 'Be Our Guest Restaurant',

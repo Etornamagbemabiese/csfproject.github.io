@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Calendar, 
   Clock, 
   MapPin, 
   Users, 
@@ -11,7 +10,6 @@ import {
   Sparkles,
   Wand2,
   Compass,
-  Heart,
   Crown,
   Zap
 } from 'lucide-react';

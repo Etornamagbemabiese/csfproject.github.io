@@ -6,11 +6,6 @@ import {
   MapPin, 
   Plus, 
   Trash2, 
-  Edit3, 
-  Save,
-  ArrowRight,
-  Star,
-  Users,
   Compass,
   Wand2
 } from 'lucide-react';
@@ -75,7 +70,6 @@ const ItineraryBuilder: React.FC = () => {
 
   const [selectedDay, setSelectedDay] = useState<string>('1');
   const [showAddItem, setShowAddItem] = useState(false);
-  const [editingItem, setEditingItem] = useState<ItineraryItem | null>(null);
 
   const [newItem, setNewItem] = useState({
     time: '',
@@ -86,7 +80,6 @@ const ItineraryBuilder: React.FC = () => {
     notes: ''
   });
 
-  const parks = ['Magic Kingdom', 'EPCOT', 'Disney\'s Hollywood Studios', 'Disney\'s Animal Kingdom'];
   const itemTypes = [
     { value: 'ride', label: 'Ride/Attraction', icon: '🎢', color: 'from-blue-500 to-purple-600' },
     { value: 'dining', label: 'Dining', icon: '🍽️', color: 'from-orange-500 to-red-600' },

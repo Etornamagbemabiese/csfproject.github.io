@@ -4,11 +4,9 @@ import {
   MapPin, 
   Clock, 
   Users, 
-  Camera, 
   Utensils, 
   Gift, 
   Shield, 
-  Zap,
   Heart,
   Globe,
   Calendar

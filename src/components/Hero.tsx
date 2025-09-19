@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, ArrowRight, Play } from 'lucide-react';
+import { Compass, ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   onGetStarted: () => void;
