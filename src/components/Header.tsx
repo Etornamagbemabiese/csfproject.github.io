@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Compass, Search, ChevronDown, X, Users, Clock, User } from 'lucide-react';
 
@@ -11,6 +11,33 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showParksDropdown, setShowParksDropdown] = useState(false);
   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
+  const [mobileParksOpen, setMobileParksOpen] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+        setMobileParksOpen(false);
+        setMobileMoreOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      // Prevent body scroll when mobile menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
   const navItems = [
     { id: 'home', label: 'HOME' },
@@ -174,11 +201,17 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            className="lg:hidden border-t border-gray-200 bg-white"
+            ref={mobileMenuRef}
+            className="lg:hidden border-t border-gray-200 bg-white max-h-[80vh] overflow-y-auto overscroll-contain"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#cbd5e0 #f7fafc'
+            }}
           >
             <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => (
@@ -186,61 +219,102 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
                   <button
                     onClick={() => {
                       if (item.hasDropdown) {
-                        // Handle dropdown toggle for mobile
+                        if (item.id === 'parks') {
+                          setMobileParksOpen(!mobileParksOpen);
+                        } else if (item.id === 'more') {
+                          setMobileMoreOpen(!mobileMoreOpen);
+                        }
                       } else {
                         onSectionChange(item.id);
                         setIsMobileMenuOpen(false);
                       }
                     }}
-                    className="w-full text-left px-3 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 font-medium"
+                    className="w-full text-left px-3 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 font-medium flex items-center justify-between"
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    {item.hasDropdown && (
+                      <motion.div
+                        animate={{ rotate: item.id === 'parks' ? (mobileParksOpen ? 180 : 0) : (mobileMoreOpen ? 180 : 0) }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown size={16} className="text-gray-400" />
+                      </motion.div>
+                    )}
                   </button>
                   
-                  {/* Mobile dropdown items */}
+                  {/* Mobile dropdown items - Parks */}
                   {item.id === 'parks' && (
-                    <div className="ml-4 space-y-1">
-                      {parksDropdownItems.map((park) => (
-                        <button
-                          key={park.id}
-                          onClick={() => {
-                            onSectionChange('maps');
-                            setIsMobileMenuOpen(false);
-                          }}
-                          className="w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+                    <AnimatePresence>
+                      {mobileParksOpen && (
+                        <motion.div 
+                          className="ml-4 space-y-1"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          {park.label}
-                        </button>
-                      ))}
-                    </div>
+                          {parksDropdownItems.map((park) => (
+                            <button
+                              key={park.id}
+                              onClick={() => {
+                                onSectionChange('maps');
+                                setIsMobileMenuOpen(false);
+                                setMobileParksOpen(false);
+                              }}
+                              className="w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 rounded-md"
+                            >
+                              {park.label}
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   )}
                   
+                  {/* Mobile dropdown items - More */}
                   {item.id === 'more' && (
-                    <div className="ml-4 space-y-1">
-                      {moreDropdownItems.map((moreItem) => {
-                        const Icon = moreItem.icon;
-                        return (
-                          <button
-                            key={moreItem.id}
-                            onClick={() => {
-                              onSectionChange(moreItem.id);
-                              setIsMobileMenuOpen(false);
-                            }}
-                            className="w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 flex items-center space-x-3"
-                          >
-                            <Icon size={16} />
-                            <span>{moreItem.label}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                    <AnimatePresence>
+                      {mobileMoreOpen && (
+                        <motion.div 
+                          className="ml-4 space-y-1"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {moreDropdownItems.map((moreItem) => {
+                            const Icon = moreItem.icon;
+                            return (
+                              <button
+                                key={moreItem.id}
+                                onClick={() => {
+                                  onSectionChange(moreItem.id);
+                                  setIsMobileMenuOpen(false);
+                                  setMobileMoreOpen(false);
+                                }}
+                                className="w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-3 rounded-md"
+                              >
+                                <Icon size={16} />
+                                <span>{moreItem.label}</span>
+                              </button>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   )}
                 </div>
               ))}
               
               {/* Mobile login and search */}
               <div className="pt-4 border-t border-gray-200 space-y-3">
-                <button className="w-full text-left px-3 py-3 text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">
+                <button 
+                  onClick={() => {
+                    onSectionChange('my-journey');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200 font-medium rounded-md"
+                >
                   LOG IN
                 </button>
                 <div className="relative">
