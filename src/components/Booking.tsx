@@ -22,7 +22,6 @@ interface BookingItem {
   duration: string;
   capacity: number;
   rating: number;
-  price: number;
   description: string;
   image: string;
   availableSlots: string[];
@@ -46,7 +45,6 @@ const Booking: React.FC = () => {
       duration: '4 minutes',
       capacity: 8,
       rating: 4.9,
-      price: 0,
       description: 'Soar on the back of a mountain banshee in this breathtaking 3D flying simulator experience.',
       image: '🦅',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -60,7 +58,6 @@ const Booking: React.FC = () => {
       duration: '18 minutes',
       capacity: 8,
       rating: 4.9,
-      price: 0,
       description: 'Join the Resistance in this epic battle against the First Order in an immersive multi-ride experience.',
       image: '⚔️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -74,7 +71,6 @@ const Booking: React.FC = () => {
       duration: '4 minutes',
       capacity: 4,
       rating: 4.8,
-      price: 0,
       description: 'Join the Guardians on a thrilling adventure through space with a reverse-launch roller coaster.',
       image: '🌌',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -88,7 +84,6 @@ const Booking: React.FC = () => {
       duration: '2 minutes',
       capacity: 2,
       rating: 4.7,
-      price: 0,
       description: 'Race through the digital world on a high-speed lightcycle in this thrilling coaster experience.',
       image: '🏍️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -102,7 +97,6 @@ const Booking: React.FC = () => {
       duration: '3 minutes',
       capacity: 4,
       rating: 4.6,
-      price: 0,
       description: 'Journey through the diamond mine with the Seven Dwarfs in this family-friendly coaster.',
       image: '⛏️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -116,7 +110,6 @@ const Booking: React.FC = () => {
       duration: '3 minutes',
       capacity: 6,
       rating: 4.8,
-      price: 0,
       description: 'Race through the Himalayas on a runaway train while avoiding the legendary Yeti.',
       image: '🏔️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -130,7 +123,6 @@ const Booking: React.FC = () => {
       duration: '3 minutes',
       capacity: 6,
       rating: 4.8,
-      price: 0,
       description: 'Blast off on a thrilling journey through space in this iconic indoor roller coaster.',
       image: '🚀',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -144,7 +136,6 @@ const Booking: React.FC = () => {
       duration: '3 minutes',
       capacity: 6,
       rating: 4.7,
-      price: 0,
       description: 'Race through the gold rush on this runaway mine train through the Wild West.',
       image: '🚂',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -158,7 +149,6 @@ const Booking: React.FC = () => {
       duration: '11 minutes',
       capacity: 6,
       rating: 4.6,
-      price: 0,
       description: 'Join Br\'er Rabbit on a musical journey that ends with a thrilling 52-foot drop.',
       image: '💧',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -172,7 +162,6 @@ const Booking: React.FC = () => {
       duration: '8 minutes',
       capacity: 8,
       rating: 4.9,
-      price: 0,
       description: 'Sail through a pirate adventure with animatronic characters and special effects.',
       image: '🏴‍☠️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -186,7 +175,6 @@ const Booking: React.FC = () => {
       duration: '10 minutes',
       capacity: 6,
       rating: 4.7,
-      price: 0,
       description: 'Enter the mysterious mansion for a spooky but family-friendly adventure with 999 happy haunts.',
       image: '👻',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -200,7 +188,6 @@ const Booking: React.FC = () => {
       duration: '10 minutes',
       capacity: 8,
       rating: 4.5,
-      price: 0,
       description: 'Take a hilarious riverboat cruise through exotic jungles with witty skippers.',
       image: '🌴',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -214,7 +201,6 @@ const Booking: React.FC = () => {
       duration: '3 minutes',
       capacity: 4,
       rating: 4.6,
-      price: 0,
       description: 'Fly over London and Neverland in this magical dark ride adventure.',
       image: '🧚‍♀️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -228,7 +214,6 @@ const Booking: React.FC = () => {
       duration: '11 minutes',
       capacity: 8,
       rating: 4.4,
-      price: 0,
       description: 'Take a gentle boat ride through scenes representing countries around the world.',
       image: '🌍',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -242,7 +227,6 @@ const Booking: React.FC = () => {
       duration: '5 minutes',
       capacity: 8,
       rating: 4.7,
-      price: 0,
       description: 'Soar over iconic landmarks around the world in this breathtaking hang-gliding simulation.',
       image: '🌍',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -256,7 +240,6 @@ const Booking: React.FC = () => {
       duration: '5 minutes',
       capacity: 6,
       rating: 4.6,
-      price: 0,
       description: 'Design and test your own concept car before taking it on a high-speed test drive.',
       image: '🏎️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -270,7 +253,6 @@ const Booking: React.FC = () => {
       duration: '5 minutes',
       capacity: 8,
       rating: 4.5,
-      price: 0,
       description: 'Join Elsa, Anna, and Olaf on a musical boat ride through Arendelle.',
       image: '❄️',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -284,7 +266,6 @@ const Booking: React.FC = () => {
       duration: '5 minutes',
       capacity: 6,
       rating: 4.6,
-      price: 0,
       description: 'Shrink down to the size of a rat and scurry through Gusteau\'s restaurant.',
       image: '🐭',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -298,7 +279,6 @@ const Booking: React.FC = () => {
       duration: '18 minutes',
       capacity: 8,
       rating: 4.8,
-      price: 0,
       description: 'Take an open-air vehicle tour through the African savanna to see real animals.',
       image: '🦁',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -312,7 +292,6 @@ const Booking: React.FC = () => {
       duration: '5 minutes',
       capacity: 8,
       rating: 4.4,
-      price: 0,
       description: 'Take a gentle boat ride through the bioluminescent rainforest of Pandora.',
       image: '🌿',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -326,7 +305,6 @@ const Booking: React.FC = () => {
       duration: '4 minutes',
       capacity: 6,
       rating: 4.7,
-      price: 0,
       description: 'Enter the haunted Hollywood Tower Hotel for a terrifying drop into the Twilight Zone.',
       image: '🏨',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -340,7 +318,6 @@ const Booking: React.FC = () => {
       duration: '2 minutes',
       capacity: 6,
       rating: 4.8,
-      price: 0,
       description: 'Launch from 0 to 60 mph in 2.8 seconds on this high-speed indoor coaster with Aerosmith music.',
       image: '🎸',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -354,7 +331,6 @@ const Booking: React.FC = () => {
       duration: '5 minutes',
       capacity: 8,
       rating: 4.6,
-      price: 0,
       description: 'Join Mickey and Minnie on a wacky train ride through their cartoon world.',
       image: '🚂',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -368,7 +344,6 @@ const Booking: React.FC = () => {
       duration: '5 minutes',
       capacity: 6,
       rating: 4.5,
-      price: 0,
       description: 'Pilot the Millennium Falcon on a smuggling mission in this interactive experience.',
       image: '🛸',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -382,7 +357,6 @@ const Booking: React.FC = () => {
       duration: '2 minutes',
       capacity: 4,
       rating: 4.5,
-      price: 0,
       description: 'Race through Andy\'s backyard on this family-friendly coaster inspired by Slinky Dog.',
       image: '🐕',
       availableSlots: ['9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM'],
@@ -398,7 +372,6 @@ const Booking: React.FC = () => {
       duration: '45 minutes',
       capacity: 8,
       rating: 4.6,
-      price: 25,
       description: 'Experience the cantina from Star Wars with themed drinks, music, and atmosphere.',
       image: '🛸',
       availableSlots: ['11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM'],
@@ -412,7 +385,6 @@ const Booking: React.FC = () => {
       duration: '2 hours',
       capacity: 6,
       rating: 4.7,
-      price: 45,
       description: 'Dine 220 miles above Earth with stunning space views and cosmic cocktails.',
       image: '🚀',
       availableSlots: ['12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM'],
@@ -426,7 +398,6 @@ const Booking: React.FC = () => {
       duration: '1 hour',
       capacity: 6,
       rating: 4.8,
-      price: 20,
       description: 'Relax in this adventure-themed lounge with specialty cocktails and small plates.',
       image: '🌿',
       availableSlots: ['11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM'],
@@ -440,7 +411,6 @@ const Booking: React.FC = () => {
       duration: '1 hour',
       capacity: 6,
       rating: 4.8,
-      price: 35,
       description: 'Tiki-themed lounge with interactive elements, tropical cocktails, and magical surprises.',
       image: '🌺',
       availableSlots: ['4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM', '11:00 PM', '12:00 AM'],
@@ -454,7 +424,6 @@ const Booking: React.FC = () => {
       duration: '1 hour',
       capacity: 4,
       rating: 4.7,
-      price: 30,
       description: 'Elegant Beauty and the Beast-inspired lounge with premium cocktails and small plates.',
       image: '🌹',
       availableSlots: ['4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM', '11:00 PM'],
@@ -472,7 +441,7 @@ const Booking: React.FC = () => {
 
   const handleConfirmBooking = () => {
     // Here you would typically send the booking to a backend
-    alert(`Booking confirmed! ${selectedItem?.name} at ${selectedSlot} for ${partySize} guest(s).`);
+    alert(`Special Access reserved! ${selectedItem?.name} at ${selectedSlot} for ${partySize} guest(s).`);
     setShowConfirmation(false);
     setSelectedItem(null);
     setSelectedSlot('');
@@ -574,8 +543,8 @@ const Booking: React.FC = () => {
                   <Users className="w-4 h-4 mr-1" />
                   Up to {item.capacity}
                 </div>
-                <div className="text-disney-gold font-semibold">
-                  {item.price === 0 ? 'Free' : `$${item.price}`}
+                <div className="text-disney-gold font-semibold text-xs sm:text-sm">
+                  Reserve Special Access!
                 </div>
               </div>
             </motion.div>
@@ -705,7 +674,7 @@ const Booking: React.FC = () => {
                   >
                     <div className="flex items-center justify-center space-x-2">
                       <Sparkles size={20} />
-                      <span>Book Now - {selectedItem.price === 0 ? 'Free' : `$${selectedItem.price * partySize}`}</span>
+                      <span>Reserve Special Access!</span>
                       <ArrowRight size={20} />
                     </div>
                   </motion.button>
@@ -748,9 +717,9 @@ const Booking: React.FC = () => {
                     <span className="text-white font-medium">{partySize}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-castle-silver">Total:</span>
+                    <span className="text-gray-600">Access Type:</span>
                     <span className="text-disney-gold font-semibold">
-                      {selectedItem?.price === 0 ? 'Free' : `$${selectedItem?.price! * partySize}`}
+                      Special Access
                     </span>
                   </div>
                 </div>

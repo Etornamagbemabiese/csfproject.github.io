@@ -18,7 +18,6 @@ interface DiningReservation {
   park: string;
   location: string;
   cuisine: string;
-  priceRange: string;
   rating: number;
   description: string;
   image: string;
@@ -37,7 +36,6 @@ const DiningReservations: React.FC = () => {
       park: 'Magic Kingdom',
       location: 'Fantasyland',
       cuisine: 'French',
-      priceRange: '$$$',
       rating: 4.7,
       description: 'Dine in the Beast\'s enchanted castle with three unique dining rooms.',
       image: '🏰',
@@ -53,7 +51,6 @@ const DiningReservations: React.FC = () => {
       park: 'Magic Kingdom',
       location: 'Fantasyland',
       cuisine: 'American',
-      priceRange: '$$$$',
       rating: 4.8,
       description: 'Dine inside Cinderella Castle with princess character interactions.',
       image: '👑',
@@ -69,7 +66,6 @@ const DiningReservations: React.FC = () => {
       park: 'EPCOT',
       location: 'World Discovery',
       cuisine: 'Contemporary',
-      priceRange: '$$$$',
       rating: 4.6,
       description: 'Dine 220 miles above Earth with stunning space views and cosmic cuisine.',
       image: '🚀',
@@ -85,7 +81,6 @@ const DiningReservations: React.FC = () => {
       park: 'Disney\'s Hollywood Studios',
       location: 'Galaxy\'s Edge',
       cuisine: 'Intergalactic',
-      priceRange: '$$',
       rating: 4.5,
       description: 'Experience the cantina from Star Wars with themed drinks and atmosphere.',
       image: '🛸',
@@ -101,7 +96,6 @@ const DiningReservations: React.FC = () => {
       park: 'EPCOT',
       location: 'World Showcase - Canada',
       cuisine: 'Steakhouse',
-      priceRange: '$$$$',
       rating: 4.8,
       description: 'Premium Canadian steakhouse featuring world-class steaks and wines.',
       image: '🥩',
@@ -117,7 +111,6 @@ const DiningReservations: React.FC = () => {
       park: 'Disney\'s Contemporary Resort',
       location: 'Resort',
       cuisine: 'American',
-      priceRange: '$$$',
       rating: 4.4,
       description: 'Buffet dining with Mickey Mouse and friends in a fun, family atmosphere.',
       image: '🐭',
@@ -133,7 +126,6 @@ const DiningReservations: React.FC = () => {
       park: 'Disney\'s Animal Kingdom',
       location: 'Africa',
       cuisine: 'African',
-      priceRange: '$$$',
       rating: 4.3,
       description: 'African-inspired buffet with Donald Duck and friends in safari gear.',
       image: '🦁',
@@ -149,7 +141,6 @@ const DiningReservations: React.FC = () => {
       park: 'Disney\'s Contemporary Resort',
       location: 'Resort',
       cuisine: 'Contemporary',
-      priceRange: '$$$$',
       rating: 4.9,
       description: 'Fine dining with panoramic views of Magic Kingdom and fireworks.',
       image: '🌆',
@@ -168,7 +159,6 @@ const DiningReservations: React.FC = () => {
   const [filters, setFilters] = useState({
     park: 'all',
     type: 'all',
-    priceRange: 'all',
     search: ''
   });
 
@@ -180,23 +170,15 @@ const DiningReservations: React.FC = () => {
     { value: 'table-service', label: 'Table Service' },
     { value: 'quick-service', label: 'Quick Service' }
   ];
-  const priceRanges = [
-    { value: 'all', label: 'All Prices' },
-    { value: '$', label: '$ (Under $15)' },
-    { value: '$$', label: '$$ ($15-35)' },
-    { value: '$$$', label: '$$$ ($35-60)' },
-    { value: '$$$$', label: '$$$$ ($60+)' }
-  ];
 
   const filteredReservations = reservations.filter(reservation => {
     const matchesPark = filters.park === 'all' || reservation.park === filters.park;
     const matchesType = filters.type === 'all' || reservation.type === filters.type;
-    const matchesPrice = filters.priceRange === 'all' || reservation.priceRange === filters.priceRange;
     const matchesSearch = filters.search === '' || 
       reservation.name.toLowerCase().includes(filters.search.toLowerCase()) ||
       reservation.cuisine.toLowerCase().includes(filters.search.toLowerCase());
     
-    return matchesPark && matchesType && matchesPrice && matchesSearch;
+    return matchesPark && matchesType && matchesSearch;
   });
 
   const handleReservation = () => {
@@ -206,7 +188,7 @@ const DiningReservations: React.FC = () => {
   };
 
   const confirmReservation = () => {
-    alert(`Reservation confirmed! ${selectedReservation?.name} at ${selectedSlot} for ${partySize} guest(s).`);
+    alert(`Premium access request submitted! ${selectedReservation?.name} at ${selectedSlot} for ${partySize} guest(s). We'll notify you if you're selected for premium access!`);
     setShowConfirmation(false);
     setSelectedReservation(null);
     setSelectedSlot('');
@@ -251,7 +233,7 @@ const DiningReservations: React.FC = () => {
             <Wand2 className="w-12 h-12 text-magic-pink animate-wand-sparkle ml-4" />
           </div>
           <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            Reserve your table at the most magical restaurants in Disney
+            Enter your party details for a chance for premium access to the restaurant
           </p>
         </motion.div>
 
@@ -301,18 +283,6 @@ const DiningReservations: React.FC = () => {
               ))}
             </select>
 
-            {/* Price Filter */}
-            <select
-              value={filters.priceRange}
-              onChange={(e) => setFilters({ ...filters, priceRange: e.target.value })}
-              className="px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:border-disney-gold focus:outline-none focus:ring-2 focus:ring-disney-gold/20"
-            >
-              {priceRanges.map(range => (
-                <option key={range.value} value={range.value} className="bg-white text-gray-900">
-                  {range.label}
-                </option>
-              ))}
-            </select>
           </div>
         </motion.div>
 
@@ -353,7 +323,7 @@ const DiningReservations: React.FC = () => {
 
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm text-gray-700">{restaurant.cuisine}</span>
-                <span className="text-disney-gold font-semibold">{restaurant.priceRange}</span>
+                <span className="text-disney-gold font-semibold text-xs sm:text-sm">Premium Access</span>
               </div>
 
               <p className="text-gray-800 text-sm mb-4 line-clamp-2">
@@ -496,7 +466,7 @@ const DiningReservations: React.FC = () => {
                   >
                     <div className="flex items-center justify-center space-x-2">
                       <Calendar size={20} />
-                      <span>Make Reservation</span>
+                      <span>Request Premium Access</span>
                       <ArrowRight size={20} />
                     </div>
                   </motion.button>

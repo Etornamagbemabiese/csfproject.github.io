@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Camera, 
+  Camera,
   MapPin, 
   Clock, 
   Star,
@@ -143,17 +143,17 @@ const AIConcierge: React.FC = () => {
     
     // Planning and Itineraries
     if (input.includes('plan') || input.includes('day') || input.includes('itinerary') || input.includes('schedule')) {
-      return "🧭 Perfect! Let me craft your magical day! Here's my recommended itinerary:\n\n**Morning (9-12 PM):**\n• Start at Space Mountain (15 min wait)\n• Pirates of the Caribbean (5 min wait)\n• Haunted Mansion (10 min wait)\n\n**Afternoon (12-4 PM):**\n• Lunch at Be Our Guest (booked for 1:30 PM)\n• Big Thunder Mountain (25 min wait)\n• Splash Mountain (20 min wait)\n\n**Evening (4-8 PM):**\n• Character meet at Town Square\n• Dinner at Cinderella's Royal Table (7 PM)\n• Fireworks viewing at 9 PM\n\nWould you like me to adjust this plan or add specific attractions?";
+      return "🧭 Perfect! Let me craft your magical day! Here's my recommended itinerary:\n\n**Morning (9-12 PM):**\n• Start at Space Mountain (15 min wait) ⭐\n• Pirates of the Caribbean (5 min wait) ⭐\n• Haunted Mansion (10 min wait) ⭐\n• It's a Small World (8 min wait)\n\n**Afternoon (12-4 PM):**\n• Lunch at Be Our Guest (booked for 1:30 PM) 🍽️\n• Big Thunder Mountain (25 min wait)\n• Splash Mountain (20 min wait)\n• Seven Dwarfs Mine Train (45 min wait)\n\n**Evening (4-8 PM):**\n• Character meet at Town Square (Mickey & Minnie) 🎭\n• Dinner at Cinderella's Royal Table (7 PM) 👑\n• Fireworks viewing at 9 PM 🎆\n\n**Pro Tips:**\n• Use Lightning Lane for popular rides\n• Best photo times: golden hour (6-7 PM)\n• Stay hydrated and take breaks\n\nWould you like me to adjust this plan or add specific attractions?";
     }
     
     // Dining and Food
     else if (input.includes('dining') || input.includes('restaurant') || input.includes('food') || input.includes('eat') || input.includes('meal')) {
-      return "🍽️ Magical dining options available now:\n\n**Character Dining:**\n• Chef Mickey's (Contemporary Resort) - 7:30 PM available\n• Cinderella's Royal Table - 6:45 PM available\n• Be Our Guest (Fantasyland) - 1:30 PM available\n\n**Quick Service:**\n• Dole Whip at Aloha Isle (Adventureland)\n• Turkey Leg at Frontierland\n• Mickey Pretzel at Main Street\n\n**Fine Dining:**\n• Victoria & Albert's (Grand Floridian) - 8:00 PM\n• California Grill (Contemporary) - 7:15 PM\n\nWhich type of dining experience interests you most?";
+      return "🍽️ Magical dining options with premium access opportunities:\n\n**Character Dining (Premium Access Available):**\n• Chef Mickey's (Contemporary Resort) - Request premium access\n• Cinderella's Royal Table - Premium dining experience\n• Be Our Guest (Fantasyland) - Castle dining magic\n\n**Quick Service (Always Available):**\n• Dole Whip at Aloha Isle (Adventureland) 🍍\n• Turkey Leg at Frontierland 🦃\n• Mickey Pretzel at Main Street 🥨\n\n**Fine Dining (Premium Access):**\n• Victoria & Albert's (Grand Floridian) - Exclusive experience\n• California Grill (Contemporary) - Fireworks dining\n\n**How Premium Access Works:**\n• Enter your party details for a chance to get premium access\n• We'll notify you if you're selected\n• Limited availability for exclusive experiences\n\nWhich type of dining experience interests you most?";
     }
     
     // Wait Times
     else if (input.includes('wait') || input.includes('line') || input.includes('queue') || input.includes('time')) {
-      return "⏰ Current wait times (updated 2 minutes ago):\n\n**Magic Kingdom:**\n• Space Mountain: 15 minutes ⭐\n• Big Thunder Mountain: 25 minutes\n• Haunted Mansion: 10 minutes ⭐\n• Pirates of the Caribbean: 5 minutes ⭐\n• It's a Small World: 8 minutes\n• Seven Dwarfs Mine Train: 45 minutes\n\n**Pro Tips:**\n• Use Lightning Lane for popular rides\n• Best times: 9-11 AM and 6-8 PM\n• Avoid 12-3 PM (peak crowds)\n\nWhich attraction are you most excited about?";
+      return "⏰ Current wait times (updated 2 minutes ago):\n\n**Magic Kingdom:**\n• Space Mountain: 15 minutes ⭐ (Special Access Available)\n• Big Thunder Mountain: 25 minutes\n• Haunted Mansion: 10 minutes ⭐\n• Pirates of the Caribbean: 5 minutes ⭐\n• It's a Small World: 8 minutes\n• Seven Dwarfs Mine Train: 45 minutes (Special Access Available)\n\n**Special Access Options:**\n• Reserve Special Access to skip the regular line\n• Limited availability for premium experiences\n• Enter your party details for a chance to get special access\n\n**Pro Tips:**\n• Use Lightning Lane for popular rides\n• Best times: 9-11 AM and 6-8 PM\n• Avoid 12-3 PM (peak crowds)\n• Request special access for the most popular attractions\n\nWhich attraction are you most excited about?";
     }
     
     // Photos and Memories
@@ -203,20 +203,20 @@ const AIConcierge: React.FC = () => {
 
 
   return (
-    <div className="pt-16 sm:pt-20 md:pt-24 pb-4 sm:pb-6 md:pb-8 px-2 sm:px-4 md:px-6 lg:px-8 min-h-screen">
+    <div className="pt-12 sm:pt-16 md:pt-20 pb-2 sm:pb-4 md:pb-6 px-3 sm:px-4 md:px-6 lg:px-8 min-h-screen">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-4 sm:mb-6 md:mb-8"
+          className="text-center mb-3 sm:mb-4 md:mb-6"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center mb-3 sm:mb-4 md:mb-6 gap-2 sm:gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center mb-2 sm:mb-3 md:mb-4 gap-1 sm:gap-2 md:gap-4">
             <Compass className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-disney-gold animate-compass-spin drop-shadow-lg order-1 sm:order-1" />
             <h1 className="luxury-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-hero bg-clip-text text-transparent drop-shadow-lg order-2 sm:order-2">Magic Chat</h1>
             <Wand2 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-magic-sparkle animate-wand-sparkle drop-shadow-lg order-3 sm:order-3" />
           </div>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 font-medium px-2">Your personal magic maker at Disney Parks</p>
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 font-medium px-1">Your personal magic maker at Disney Parks</p>
         </motion.div>
 
 
@@ -225,18 +225,18 @@ const AIConcierge: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-4 sm:mb-6"
+          className="mb-3 sm:mb-4"
         >
           <div className="relative">
             <motion.button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50 hover:border-disney-gold transition-all duration-300 text-sm touch-manipulation min-h-[48px] shadow-sm hover:shadow-md"
+              className="w-full flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-white border border-gray-200 rounded-lg sm:rounded-xl text-gray-700 hover:bg-gray-50 hover:border-disney-gold transition-all duration-300 text-xs sm:text-sm touch-manipulation min-h-[44px] sm:min-h-[48px] shadow-sm hover:shadow-md"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <div className="flex items-center space-x-2">
                 <Wand2 size={16} className="text-disney-gold" />
-                <span className="text-gray-700 text-left font-medium">Quick Actions & Prompts</span>
+                <span className="text-gray-700 text-left font-medium text-xs sm:text-sm">Quick Actions & Prompts</span>
               </div>
               <ChevronDown 
                 size={16} 
@@ -293,10 +293,10 @@ const AIConcierge: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl border border-gray-200 overflow-visible shadow-lg"
+          className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-200 overflow-visible shadow-lg"
         >
           {/* Messages */}
-          <div className="h-96 sm:h-[28rem] md:h-[32rem] lg:h-[36rem] xl:h-[40rem] overflow-y-auto p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4">
+          <div className="h-80 sm:h-96 md:h-[28rem] lg:h-[32rem] xl:h-[36rem] overflow-y-auto p-2 sm:p-3 md:p-4 space-y-2 sm:space-y-3">
             <AnimatePresence>
               {messages.map((message) => (
                 <motion.div
@@ -306,7 +306,7 @@ const AIConcierge: React.FC = () => {
                   exit={{ opacity: 0, y: -20 }}
                   className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[85%] sm:max-w-xs md:max-w-sm lg:max-w-2xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 rounded-xl sm:rounded-2xl ${
+                  <div className={`max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-2xl px-2 sm:px-3 md:px-4 py-2 sm:py-3 md:py-4 rounded-lg sm:rounded-xl ${
                     message.isUser 
                       ? 'bg-gradient-compass text-white shadow-lg' 
                       : 'bg-gray-50 text-gray-900 border border-gray-200 shadow-sm'
@@ -321,22 +321,23 @@ const AIConcierge: React.FC = () => {
                           {message.text.split('\n').map((line, index) => {
                             if (line.startsWith('**') && line.endsWith('**')) {
                               return (
-                                <h4 key={index} className="text-sm sm:text-base md:text-lg font-semibold text-disney-gold mt-2 sm:mt-3 md:mt-4 mb-1 sm:mb-2">
+                                <h4 key={index} className="text-sm sm:text-base md:text-lg font-semibold text-disney-gold mt-2 sm:mt-3 md:mt-4 mb-1 sm:mb-2 flex items-center">
+                                  <span className="mr-2">✨</span>
                                   {line.replace(/\*\*/g, '')}
                                 </h4>
                               );
                             } else if (line.startsWith('•')) {
                               return (
                                 <div key={index} className="flex items-start space-x-2">
-                                  <span className="text-disney-gold mt-0.5 sm:mt-1 text-xs sm:text-sm md:text-base">•</span>
-                                  <span className="text-gray-700 text-xs sm:text-sm md:text-base">{line.substring(1).trim()}</span>
+                                  <span className="text-disney-gold mt-0.5 sm:mt-1 text-xs sm:text-sm md:text-base flex-shrink-0">•</span>
+                                  <span className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">{line.substring(1).trim()}</span>
                                 </div>
                               );
                             } else if (line.trim() === '') {
                               return <br key={index} />;
                             } else {
                               return (
-                                <p key={index} className="text-gray-700 text-xs sm:text-sm md:text-base">
+                                <p key={index} className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">
                                   {line}
                                 </p>
                               );
@@ -362,11 +363,15 @@ const AIConcierge: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-start"
               >
-                <div className="bg-gray-50 text-gray-700 border border-gray-200 px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl">
+                <div className="bg-gray-50 text-gray-700 border border-gray-200 px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl shadow-sm">
                   <div className="flex items-center space-x-2 sm:space-x-3">
                     <Wand2 className="w-4 h-4 sm:w-5 sm:h-5 text-disney-gold animate-wand-sparkle" />
                     <span className="text-xs sm:text-sm md:text-base font-medium">Magic Chat is thinking...</span>
-                    <div className="loading-dots"></div>
+                    <div className="flex space-x-1">
+                      <div className="w-1 h-1 bg-disney-gold rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-1 h-1 bg-disney-gold rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-1 h-1 bg-disney-gold rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -380,9 +385,12 @@ const AIConcierge: React.FC = () => {
                 exit={{ opacity: 0, y: -20 }}
                 className="flex justify-start"
               >
-                <div className="max-w-[85%] sm:max-w-xs md:max-w-sm lg:max-w-2xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 rounded-xl sm:rounded-2xl bg-gray-50 text-gray-900 border border-gray-200 shadow-sm">
-                  <div className="text-sm font-medium text-gray-700 mb-3">Try asking:</div>
-                  <div className="flex flex-wrap gap-2">
+                <div className="max-w-[90%] sm:max-w-xs md:max-w-sm lg:max-w-2xl px-3 sm:px-4 md:px-5 py-3 sm:py-4 md:py-5 rounded-lg sm:rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 text-gray-900 border border-gray-200 shadow-sm">
+                  <div className="flex items-center mb-3 sm:mb-4">
+                    <Wand2 className="w-4 h-4 text-disney-gold mr-2" />
+                    <span className="text-xs sm:text-sm font-semibold text-gray-700">Try asking:</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                     {[
                       "Plan my perfect Disney day",
                       "What are the current wait times?",
@@ -394,9 +402,9 @@ const AIConcierge: React.FC = () => {
                       <motion.button
                         key={index}
                         onClick={() => handleSendMessage(prompt)}
-                        className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-gray-900 hover:bg-gray-50 hover:border-disney-gold transition-all duration-200 text-xs font-medium"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="px-3 sm:px-4 py-2 sm:py-3 bg-white border border-gray-200 rounded-lg text-gray-900 hover:bg-disney-gold/5 hover:border-disney-gold transition-all duration-200 text-xs sm:text-sm font-medium text-left shadow-sm hover:shadow-md"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                       >
                         {prompt}
                       </motion.button>
@@ -410,10 +418,10 @@ const AIConcierge: React.FC = () => {
           </div>
 
           {/* Search Input */}
-          <div className="border-t border-white/10 p-2 sm:p-3 md:p-4">
+          <div className="border-t border-gray-200 p-3 sm:p-4 md:p-5 bg-gray-50/50">
             <form onSubmit={handleSearchSubmit} className="relative">
               <div className="relative">
-                <Search className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+                <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                 <input
                   ref={searchInputRef}
                   type="text"
@@ -423,7 +431,7 @@ const AIConcierge: React.FC = () => {
                   onFocus={handleSearchFocus}
                   onBlur={handleSearchBlur}
                   placeholder="Ask Magic Chat anything about Disney Parks..."
-                  className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-3 md:py-4 bg-white border border-gray-200 rounded-lg sm:rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[44px] shadow-sm"
+                  className="w-full pl-10 sm:pl-12 md:pl-14 pr-12 sm:pr-14 md:pr-16 py-3 sm:py-4 bg-white border border-gray-200 rounded-xl sm:rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[48px] sm:min-h-[52px] shadow-sm"
                 />
                 {searchInput && (
                   <motion.button
@@ -432,21 +440,21 @@ const AIConcierge: React.FC = () => {
                       setSearchInput('');
                       setShowSearchSuggestions(false);
                     }}
-                    className="absolute right-10 sm:right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors p-1"
+                    className="absolute right-12 sm:right-14 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-1.5"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >
-                    <X size={16} />
+                    <X size={18} />
                   </motion.button>
                 )}
                 <motion.button
                   type="submit"
                   disabled={!searchInput.trim()}
-                  className="absolute right-1 sm:right-2 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-gradient-to-r from-sky-300 to-blue-400 text-white rounded-md sm:rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 touch-manipulation min-h-[36px] min-w-[36px]"
+                  className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 p-2 sm:p-2.5 bg-gradient-to-r from-disney-gold to-disney-gold/80 text-white rounded-lg sm:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 touch-manipulation min-h-[40px] min-w-[40px] shadow-sm hover:shadow-md"
                   whileHover={{ scale: searchInput.trim() ? 1.05 : 1 }}
                   whileTap={{ scale: searchInput.trim() ? 0.95 : 1 }}
                 >
-                  <Send size={14} />
+                  <Send size={16} />
                 </motion.button>
               </div>
               
@@ -457,15 +465,18 @@ const AIConcierge: React.FC = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-lg z-30"
+                    className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-30"
                   >
-                    <div className="p-2 space-y-1">
+                    <div className="p-3 space-y-2">
+                      <div className="text-xs font-semibold text-disney-gold uppercase tracking-wide mb-2">
+                        Quick Actions
+                      </div>
                       {quickActions
                         .filter(action => 
                           action.label.toLowerCase().includes(searchInput.toLowerCase()) ||
                           action.action.toLowerCase().includes(searchInput.toLowerCase())
                         )
-                        .slice(0, 3)
+                        .slice(0, 4)
                         .map((action, index) => {
                           const Icon = action.icon;
                           return (
@@ -476,18 +487,23 @@ const AIConcierge: React.FC = () => {
                                 setSearchInput('');
                                 setShowSearchSuggestions(false);
                               }}
-                              className="w-full flex items-center space-x-3 px-3 py-2.5 text-left text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 touch-manipulation"
+                              className="w-full flex items-center space-x-3 px-3 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 touch-manipulation border border-transparent hover:border-gray-200"
                               whileHover={{ x: 4 }}
                             >
-                              <Icon size={16} className="text-disney-gold" />
-                              <div className="flex-1 min-w-0">
-                                <div className="font-medium text-sm truncate">{action.label}</div>
-                                <div className="text-xs text-gray-500 truncate">{action.action}</div>
+                              <div className="flex-shrink-0">
+                                <Icon size={18} className="text-disney-gold" />
                               </div>
-                  </motion.button>
-                );
-              })}
-            </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="font-medium text-sm truncate text-gray-900">{action.label}</div>
+                                <div className="text-xs text-gray-500 truncate mt-1">{action.action}</div>
+                              </div>
+                              <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                <Send size={14} className="text-disney-gold" />
+                              </div>
+                            </motion.button>
+                          );
+                        })}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
