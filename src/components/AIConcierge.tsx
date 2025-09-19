@@ -141,53 +141,56 @@ const AIConcierge: React.FC = () => {
   const generateAIResponse = (userInput: string): string => {
     const input = userInput.toLowerCase();
     
+    // More comprehensive keyword matching
+    const hasKeyword = (keywords: string[]) => keywords.some(keyword => input.includes(keyword));
+    
     // Planning and Itineraries
-    if (input.includes('plan') || input.includes('day') || input.includes('itinerary') || input.includes('schedule')) {
+    if (hasKeyword(['plan', 'day', 'itinerary', 'schedule', 'personalized', 'visit', 'perfect', 'create', 'craft', 'magical'])) {
       return "🧭 Perfect! Let me craft your magical day! Here's my recommended itinerary:\n\n**Morning (9-12 PM):**\n• Start at Space Mountain (15 min wait) ⭐\n• Pirates of the Caribbean (5 min wait) ⭐\n• Haunted Mansion (10 min wait) ⭐\n• It's a Small World (8 min wait)\n\n**Afternoon (12-4 PM):**\n• Lunch at Be Our Guest (booked for 1:30 PM) 🍽️\n• Big Thunder Mountain (25 min wait)\n• Splash Mountain (20 min wait)\n• Seven Dwarfs Mine Train (45 min wait)\n\n**Evening (4-8 PM):**\n• Character meet at Town Square (Mickey & Minnie) 🎭\n• Dinner at Cinderella's Royal Table (7 PM) 👑\n• Fireworks viewing at 9 PM 🎆\n\n**Pro Tips:**\n• Use Lightning Lane for popular rides\n• Best photo times: golden hour (6-7 PM)\n• Stay hydrated and take breaks\n\nWould you like me to adjust this plan or add specific attractions?";
     }
     
     // Dining and Food
-    else if (input.includes('dining') || input.includes('restaurant') || input.includes('food') || input.includes('eat') || input.includes('meal')) {
+    else if (hasKeyword(['dining', 'restaurant', 'food', 'eat', 'meal', 'reservations', 'recommendations', 'available', 'magic', 'find'])) {
       return "🍽️ Magical dining options with premium access opportunities:\n\n**Character Dining (Premium Access Available):**\n• Chef Mickey's (Contemporary Resort) - Request premium access\n• Cinderella's Royal Table - Premium dining experience\n• Be Our Guest (Fantasyland) - Castle dining magic\n\n**Quick Service (Always Available):**\n• Dole Whip at Aloha Isle (Adventureland) 🍍\n• Turkey Leg at Frontierland 🦃\n• Mickey Pretzel at Main Street 🥨\n\n**Fine Dining (Premium Access):**\n• Victoria & Albert's (Grand Floridian) - Exclusive experience\n• California Grill (Contemporary) - Fireworks dining\n\n**How Premium Access Works:**\n• Enter your party details for a chance to get premium access\n• We'll notify you if you're selected\n• Limited availability for exclusive experiences\n\nWhich type of dining experience interests you most?";
     }
     
     // Wait Times
-    else if (input.includes('wait') || input.includes('line') || input.includes('queue') || input.includes('time')) {
+    else if (hasKeyword(['wait', 'line', 'queue', 'time', 'current', 'attractions', 'show me', 'times', 'all'])) {
       return "⏰ Current wait times (updated 2 minutes ago):\n\n**Magic Kingdom:**\n• Space Mountain: 15 minutes ⭐ (Special Access Available)\n• Big Thunder Mountain: 25 minutes\n• Haunted Mansion: 10 minutes ⭐\n• Pirates of the Caribbean: 5 minutes ⭐\n• It's a Small World: 8 minutes\n• Seven Dwarfs Mine Train: 45 minutes (Special Access Available)\n\n**Special Access Options:**\n• Reserve Special Access to skip the regular line\n• Limited availability for premium experiences\n• Enter your party details for a chance to get special access\n\n**Pro Tips:**\n• Use Lightning Lane for popular rides\n• Best times: 9-11 AM and 6-8 PM\n• Avoid 12-3 PM (peak crowds)\n• Request special access for the most popular attractions\n\nWhich attraction are you most excited about?";
     }
     
     // Photos and Memories
-    else if (input.includes('photo') || input.includes('picture') || input.includes('camera') || input.includes('memory')) {
+    else if (hasKeyword(['photo', 'picture', 'camera', 'memory', 'opportunities', 'photopass', 'locations', 'best', 'spots', 'show me'])) {
       return "📸 Magical photo opportunities:\n\n**Best Photo Spots:**\n• Cinderella Castle (golden hour 6-7 PM)\n• Main Street USA (vintage charm)\n• Galaxy's Edge (at night with lights)\n• Tomorrowland (futuristic backdrop)\n• Adventureland (jungle vibes)\n\n**Character Photo Ops:**\n• Mickey Mouse - Town Square (10 AM-6 PM)\n• Princesses - Fairytale Hall (9 AM-8 PM)\n• Star Wars - Galaxy's Edge (all day)\n\n**PhotoPass Locations:**\n• Castle front, Main Street, Tomorrowland\n• Professional photographers available\n• Digital downloads included with Memory Maker\n\nWant me to help you plan the perfect photo route?";
     }
     
     // Souvenirs and Shopping
-    else if (input.includes('souvenir') || input.includes('gift') || input.includes('shop') || input.includes('buy') || input.includes('merchandise')) {
+    else if (hasKeyword(['souvenir', 'gift', 'shop', 'buy', 'merchandise', 'exclusive', 'disney', 'find', 'hunt', 'where can i'])) {
       return "🛍️ Best shopping destinations:\n\n**Must-Visit Shops:**\n• World of Disney (largest selection)\n• Emporium (Main Street classics)\n• Galaxy's Edge shops (Star Wars exclusives)\n• Fantasyland shops (princess items)\n\n**Exclusive Items:**\n• Limited edition pins\n• Park-specific merchandise\n• Custom ears and accessories\n• Collectible figures\n\n**Shopping Tips:**\n• Ask about exclusive park items\n• Check for limited editions\n• Use Disney Genie+ for shopping\n• Package pickup available\n\nWhat type of souvenirs are you looking for?";
     }
     
     // Characters and Meet & Greets
-    else if (input.includes('character') || input.includes('meet') || input.includes('mickey') || input.includes('princess') || input.includes('disney friends')) {
+    else if (hasKeyword(['character', 'meet', 'mickey', 'princess', 'disney friends', 'when', 'where', 'greet', 'characters'])) {
       return "🎭 Character meet & greet schedule:\n\n**Available Now:**\n• Mickey Mouse - Town Square (10 AM-6 PM)\n• Minnie Mouse - Town Square (10 AM-6 PM)\n• Goofy - Tomorrowland (11 AM-7 PM)\n• Donald Duck - Adventureland (12 PM-8 PM)\n\n**Princesses:**\n• Elsa & Anna - Fairytale Hall (9 AM-8 PM)\n• Cinderella - Fairytale Hall (9 AM-8 PM)\n• Belle - Fantasyland (10 AM-7 PM)\n\n**Star Wars:**\n• Rey - Galaxy's Edge (all day)\n• Kylo Ren - Galaxy's Edge (all day)\n• Chewbacca - Galaxy's Edge (all day)\n\n**Tips:**\n• Bring autograph books\n• Use Lightning Lane for popular characters\n• Best times: early morning or evening\n\nWhich character would you love to meet?";
     }
     
     // Navigation and Directions
-    else if (input.includes('navigate') || input.includes('navigation') || input.includes('directions') || input.includes('where') || input.includes('how to get')) {
+    else if (hasKeyword(['navigate', 'navigation', 'directions', 'where', 'how to get', 'help me', 'efficiently', 'between', 'attractions'])) {
       return "🧭 Navigation assistance:\n\n**Transportation Options:**\n• Monorail (Magic Kingdom ↔ Epcot)\n• Skyliner (Epcot ↔ Hollywood Studios)\n• Ferry boats (Magic Kingdom ↔ TTC)\n• Buses (all parks and resorts)\n\n**Walking Routes:**\n• Main Street to Fantasyland: 5 minutes\n• Tomorrowland to Adventureland: 8 minutes\n• Galaxy's Edge to Toy Story Land: 12 minutes\n\n**AR Navigation Features:**\n• Real-time directions\n• Crowd avoidance\n• Wait time integration\n• Photo spot alerts\n\n**Pro Tips:**\n• Download My Disney Experience app\n• Use Genie+ for optimal routing\n• Check park maps at entrances\n\nWhere would you like to go?";
     }
     
     // Weather and Conditions
-    else if (input.includes('weather') || input.includes('rain') || input.includes('hot') || input.includes('temperature')) {
+    else if (hasKeyword(['weather', 'rain', 'hot', 'temperature', 'indoor', 'activity', 'recommendations', 'current', 'update', 'like today'])) {
       return "🌤️ Current park conditions:\n\n**Weather:**\n• Temperature: 78°F (perfect!)\n• Conditions: Partly cloudy\n• Rain chance: 20% (afternoon)\n• Humidity: 65%\n\n**Indoor Attractions (if needed):**\n• Haunted Mansion\n• Pirates of the Caribbean\n• It's a Small World\n• Carousel of Progress\n• Hall of Presidents\n\n**Weather Tips:**\n• Pack ponchos (cheaper than park ones)\n• Stay hydrated\n• Use indoor attractions during storms\n• Don't forget sunscreen\n• Afternoon storms usually pass quickly\n\n**Best Times Today:**\n• Morning: 9-11 AM (coolest)\n• Evening: 6-8 PM (comfortable)\n\nNeed recommendations for indoor activities?";
     }
     
     // Special Events and Shows
-    else if (input.includes('show') || input.includes('parade') || input.includes('fireworks') || input.includes('event') || input.includes('entertainment')) {
+    else if (hasKeyword(['show', 'parade', 'fireworks', 'event', 'entertainment', 'happening', 'today', 'shows', 'events'])) {
       return "🎪 Today's entertainment schedule:\n\n**Parades:**\n• Festival of Fantasy Parade - 3:00 PM\n• Mickey's Royal Friendship Faire - 12:30 PM, 2:30 PM, 4:30 PM\n\n**Fireworks:**\n• Happily Ever After - 9:00 PM\n• Best viewing: Main Street or Tomorrowland\n\n**Shows:**\n• Mickey's PhilharMagic - Every 30 minutes\n• Country Bear Jamboree - Every 45 minutes\n• Enchanted Tiki Room - Every 20 minutes\n\n**Special Events:**\n• Character Cavalcades (throughout day)\n• Street performers on Main Street\n• Galaxy's Edge shows (all day)\n\n**Pro Tips:**\n• Arrive 30 minutes early for parades\n• Use Lightning Lane for shows\n• Best parade spots: Main Street curb\n\nWhich entertainment interests you most?";
     }
     
     // Help and General Questions
-    else if (input.includes('help') || input.includes('what can you do') || input.includes('capabilities')) {
+    else if (hasKeyword(['help', 'what can you do', 'capabilities', 'assist'])) {
       return "🌟 I'm Magic Chat, your personal Disney assistant! Here's what I can help with:\n\n**Planning:**\n• Create custom itineraries\n• Optimize your park day\n• Schedule dining reservations\n• Plan character meet & greets\n\n**Real-Time Info:**\n• Current wait times\n• Weather conditions\n• Show schedules\n• Special events\n\n**Navigation:**\n• AR-guided directions\n• Crowd avoidance\n• Transportation options\n• Photo spot locations\n\n**Dining:**\n• Restaurant recommendations\n• Reservation availability\n• Menu suggestions\n• Character dining options\n\n**Shopping:**\n• Souvenir recommendations\n• Exclusive merchandise\n• Shop locations\n• Package pickup\n\nWhat would you like help with first?";
     }
     
