@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="relative mt-20">
       {/* Magical background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-blue-900/50 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-blue-900 to-slate-800"></div>
       
       <div className="relative z-10">
         {/* Main footer content */}
@@ -73,22 +73,22 @@ const Footer: React.FC = () => {
                   </h3>
                   <Sparkles className="w-6 h-6 text-disney-pink animate-sparkle" />
                 </div>
-                <p className="text-gray-400 leading-relaxed mb-6">
+                <p className="text-gray-200 leading-relaxed mb-6">
                   Your mystical companion for creating extraordinary memories. 
                   Experience magical destinations like never before with our enchanted AI guide.
                 </p>
                 
                 {/* Contact info */}
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-3 text-gray-400">
+                  <div className="flex items-center space-x-3 text-gray-200">
                     <Mail size={16} />
                     <span>guide@enchanted.com</span>
                   </div>
-                  <div className="flex items-center space-x-3 text-gray-400">
+                  <div className="flex items-center space-x-3 text-gray-200">
                     <Phone size={16} />
                     <span>1-800-ENCHANTED</span>
                   </div>
-                  <div className="flex items-center space-x-3 text-gray-400">
+                  <div className="flex items-center space-x-3 text-gray-200">
                     <MapPin size={16} />
                     <span>Available at magical destinations worldwide</span>
                   </div>
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
                     <li key={linkIndex}>
                       <motion.a
                         href={link.href}
-                        className="text-gray-400 hover:text-enchanted-gold transition-colors duration-300 text-sm"
+                        className="text-gray-200 hover:text-enchanted-gold transition-colors duration-300 text-sm"
                         whileHover={{ x: 5 }}
                       >
                         {link.label}
@@ -136,14 +136,14 @@ const Footer: React.FC = () => {
             <div className="flex flex-col md:flex-row items-center justify-between">
               {/* Social media */}
               <div className="flex items-center space-x-4 mb-6 md:mb-0">
-                <span className="text-gray-400 text-sm">Follow the magic:</span>
+                <span className="text-gray-200 text-sm">Follow the magic:</span>
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
                   return (
                     <motion.a
                       key={index}
                       href={social.href}
-                      className="p-2 bg-white/5 hover:bg-enchanted-gold/20 border border-white/10 hover:border-enchanted-gold/50 rounded-lg transition-all duration-300 text-gray-400 hover:text-enchanted-gold"
+                      className="p-2 bg-white/10 hover:bg-enchanted-gold/20 border border-white/20 hover:border-enchanted-gold/50 rounded-lg transition-all duration-300 text-gray-200 hover:text-enchanted-gold"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -158,7 +158,7 @@ const Footer: React.FC = () => {
                 <input
                   type="email"
                   placeholder="Enter your email for magical updates"
-                  className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-enchanted-gold/50 focus:ring-2 focus:ring-enchanted-gold/20 transition-all duration-300 text-sm"
+                  className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:border-enchanted-gold/50 focus:ring-2 focus:ring-enchanted-gold/20 transition-all duration-300 text-sm"
                 />
               </div>
             </div>

@@ -83,14 +83,14 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex bg-white/5 rounded-xl p-1 mb-6 sm:mb-8 border border-white/10"
+          className="flex bg-gray-50 rounded-xl p-1 mb-6 sm:mb-8 border border-gray-200"
         >
           <button
             onClick={() => setIsLogin(true)}
             className={`flex-1 py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[48px] ${
               isLogin 
                 ? 'bg-white text-black' 
-                : 'text-white hover:bg-white/10'
+                : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
             Sign In
@@ -100,7 +100,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             className={`flex-1 py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[48px] ${
               !isLogin 
                 ? 'bg-white text-black' 
-                : 'text-white hover:bg-white/10'
+                : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
             Create Account
@@ -112,7 +112,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="glass-effect p-6 sm:p-8 rounded-2xl border border-white/10"
+          className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-lg"
         >
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             {/* Email */}
@@ -128,7 +128,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your.email@disney.com"
-                  className="w-full pl-10 pr-4 py-3 sm:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-base touch-manipulation min-h-[48px]"
+                  className="w-full pl-10 pr-4 py-3 sm:py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-base touch-manipulation min-h-[48px]"
                   required
                 />
               </div>
@@ -147,7 +147,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="Enter your password"
-                  className="w-full pl-10 pr-12 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
+                  className="w-full pl-10 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
                   required
                 />
                 <button
@@ -177,7 +177,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                         value={formData.firstName}
                         onChange={handleInputChange}
                         placeholder="Mickey"
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
+                        className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
                         required={!isLogin}
                       />
                     </div>
@@ -194,7 +194,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                         value={formData.lastName}
                         onChange={handleInputChange}
                         placeholder="Mouse"
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
+                        className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
                         required={!isLogin}
                       />
                     </div>
@@ -213,7 +213,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                       name="birthDate"
                       value={formData.birthDate}
                       onChange={handleInputChange}
-                      className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
                       required={!isLogin}
                     />
                   </div>
@@ -256,7 +256,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                       value={formData.confirmPassword}
                       onChange={handleInputChange}
                       placeholder="Confirm your password"
-                      className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
+                      className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300"
                       required={!isLogin}
                     />
                   </div>
@@ -290,7 +290,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           </div>
 
           {/* Disney Account Benefits */}
-          <div className="mt-8 pt-6 border-t border-white/10">
+          <div className="mt-8 pt-6 border-t border-gray-200">
             <h3 className="text-lg font-semibold text-white mb-4 text-center">
               Disney Account Benefits
             </h3>

@@ -30,7 +30,7 @@ const AIConcierge: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Welcome, friend! 🧭 I'm Mickey's Compass, your personal magic maker! I'm here to guide you through the most wonderful places on earth. What magical adventure shall we plan today?",
+      text: "Welcome, friend! 🧭 I'm Magic Chat, your personal magic maker! I'm here to guide you through the most wonderful places on earth. What magical adventure shall we plan today?",
       isUser: false,
       timestamp: new Date(),
       type: 'text'
@@ -41,6 +41,7 @@ const AIConcierge: React.FC = () => {
   const [searchInput, setSearchInput] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
+  const [showQuickPrompts, setShowQuickPrompts] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -90,6 +91,7 @@ const AIConcierge: React.FC = () => {
     setMessages(prev => [...prev, userMessage]);
     setIsTyping(true);
     setSearchInput(''); // Clear search input after sending
+    setShowQuickPrompts(false); // Hide quick prompts after user sends a message
 
     // Simulate AI response with more realistic timing
     setTimeout(() => {
@@ -186,12 +188,12 @@ const AIConcierge: React.FC = () => {
     
     // Help and General Questions
     else if (input.includes('help') || input.includes('what can you do') || input.includes('capabilities')) {
-      return "🌟 I'm Mickey's Compass, your personal Disney assistant! Here's what I can help with:\n\n**Planning:**\n• Create custom itineraries\n• Optimize your park day\n• Schedule dining reservations\n• Plan character meet & greets\n\n**Real-Time Info:**\n• Current wait times\n• Weather conditions\n• Show schedules\n• Special events\n\n**Navigation:**\n• AR-guided directions\n• Crowd avoidance\n• Transportation options\n• Photo spot locations\n\n**Dining:**\n• Restaurant recommendations\n• Reservation availability\n• Menu suggestions\n• Character dining options\n\n**Shopping:**\n• Souvenir recommendations\n• Exclusive merchandise\n• Shop locations\n• Package pickup\n\nWhat would you like help with first?";
+      return "🌟 I'm Magic Chat, your personal Disney assistant! Here's what I can help with:\n\n**Planning:**\n• Create custom itineraries\n• Optimize your park day\n• Schedule dining reservations\n• Plan character meet & greets\n\n**Real-Time Info:**\n• Current wait times\n• Weather conditions\n• Show schedules\n• Special events\n\n**Navigation:**\n• AR-guided directions\n• Crowd avoidance\n• Transportation options\n• Photo spot locations\n\n**Dining:**\n• Restaurant recommendations\n• Reservation availability\n• Menu suggestions\n• Character dining options\n\n**Shopping:**\n• Souvenir recommendations\n• Exclusive merchandise\n• Shop locations\n• Package pickup\n\nWhat would you like help with first?";
     }
     
     // Default response
     else {
-      return "✨ That's a great question! I'm Mickey's Compass, your personal magic maker at Disney Parks! I can help you with:\n\n• Planning your perfect day\n• Finding the best dining spots\n• Checking wait times\n• Meeting characters\n• Taking amazing photos\n• Shopping for souvenirs\n• Navigating the parks\n• Weather updates\n• Show schedules\n\nJust ask me anything about your Disney adventure! What magical experience are you looking for today? 🎭";
+      return "✨ That's a great question! I'm Magic Chat, your personal magic maker at Disney Parks! I can help you with:\n\n• Planning your perfect day\n• Finding the best dining spots\n• Checking wait times\n• Meeting characters\n• Taking amazing photos\n• Shopping for souvenirs\n• Navigating the parks\n• Weather updates\n• Show schedules\n\nJust ask me anything about your Disney adventure! What magical experience are you looking for today? 🎭";
     }
   };
 
@@ -211,64 +213,90 @@ const AIConcierge: React.FC = () => {
         >
           <div className="flex flex-col sm:flex-row items-center justify-center mb-3 sm:mb-4 md:mb-6 gap-2 sm:gap-4">
             <Compass className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-disney-gold animate-compass-spin drop-shadow-lg order-1 sm:order-1" />
-            <h1 className="luxury-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-hero bg-clip-text text-transparent drop-shadow-lg order-2 sm:order-2">Mickey's Compass</h1>
+            <h1 className="luxury-text text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-hero bg-clip-text text-transparent drop-shadow-lg order-2 sm:order-2">Magic Chat</h1>
             <Wand2 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-magic-sparkle animate-wand-sparkle drop-shadow-lg order-3 sm:order-3" />
           </div>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-light font-medium px-2">Your personal magic maker at Disney Parks</p>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 font-medium px-2">Your personal magic maker at Disney Parks</p>
         </motion.div>
 
-        {/* Prompt Suggestions - Only show if no user messages yet */}
-        {messages.filter(msg => msg.isUser).length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-4 sm:mb-6 md:mb-8"
-          >
-          <div className="text-center mb-3 sm:mb-4">
-            <h2 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-1 sm:mb-2">Try asking me:</h2>
-            <p className="text-xs sm:text-sm md:text-base text-slate-light">Click any prompt below to get started!</p>
+
+        {/* Quick Actions Dropdown - Moved to top */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-4 sm:mb-6"
+        >
+          <div className="relative">
+            <motion.button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="w-full flex items-center justify-between px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50 hover:border-disney-gold transition-all duration-300 text-sm touch-manipulation min-h-[48px] shadow-sm hover:shadow-md"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="flex items-center space-x-2">
+                <Wand2 size={16} className="text-disney-gold" />
+                <span className="text-gray-700 text-left font-medium">Quick Actions & Prompts</span>
+              </div>
+              <ChevronDown 
+                size={16} 
+                className={`text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+              />
+            </motion.button>
+
+            <AnimatePresence>
+              {isDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-50 max-h-80 sm:max-h-96 overflow-hidden"
+                >
+                  <div className="p-2 space-y-1 overflow-y-auto max-h-72 sm:max-h-80">
+                    <div className="px-3 py-2 text-xs font-semibold text-disney-gold uppercase tracking-wide border-b border-gray-200 mb-2">
+                      Popular Questions
+                    </div>
+                    {quickActions.map((action, index) => {
+                      const Icon = action.icon;
+                      return (
+                        <motion.button
+                          key={index}
+                          onClick={() => {
+                            handleQuickAction(action.action);
+                            setIsDropdownOpen(false);
+                          }}
+                          className="w-full flex items-center space-x-3 px-3 py-3 text-left text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 touch-manipulation min-h-[48px] group border border-transparent hover:border-gray-200"
+                          whileHover={{ x: 4 }}
+                        >
+                          <div className="flex-shrink-0">
+                            <Icon size={16} className="text-disney-gold group-hover:scale-110 transition-transform duration-200" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-sm truncate text-gray-900">{action.label}</div>
+                            <div className="text-xs text-gray-500 truncate mt-1">{action.action}</div>
+                          </div>
+                          <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <Send size={14} className="text-disney-gold" />
+                          </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4">
-            {[
-              "Plan my perfect Disney day",
-              "What are the current wait times?",
-              "Find me dining reservations",
-              "Where can I meet Mickey Mouse?",
-              "Show me the best photo spots",
-              "What's the weather like today?"
-            ].map((prompt, index) => (
-              <motion.button
-                key={index}
-                onClick={() => handleSendMessage(prompt)}
-                className="p-2 sm:p-3 md:p-4 bg-white/10 border border-white/20 rounded-lg sm:rounded-xl text-white hover:bg-white/20 hover:border-disney-gold/50 transition-all duration-300 text-left group touch-manipulation min-h-[44px]"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <Wand2 size={14} className="text-disney-gold group-hover:animate-wand-sparkle flex-shrink-0" />
-                  <span className="text-xs sm:text-sm md:text-base font-medium leading-tight">{prompt}</span>
-                </div>
-              </motion.button>
-            ))}
-          </div>
-          </motion.div>
-        )}
+        </motion.div>
 
         {/* Chat Container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="card-elevated rounded-xl sm:rounded-2xl md:rounded-3xl border border-white/20 overflow-visible"
+          className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl border border-gray-200 overflow-visible shadow-lg"
         >
           {/* Messages */}
-          <div className="h-64 sm:h-80 md:h-96 overflow-y-auto p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4">
+          <div className="h-96 sm:h-[28rem] md:h-[32rem] lg:h-[36rem] xl:h-[40rem] overflow-y-auto p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-3 md:space-y-4">
             <AnimatePresence>
               {messages.map((message) => (
                 <motion.div
@@ -281,7 +309,7 @@ const AIConcierge: React.FC = () => {
                   <div className={`max-w-[85%] sm:max-w-xs md:max-w-sm lg:max-w-2xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 rounded-xl sm:rounded-2xl ${
                     message.isUser 
                       ? 'bg-gradient-compass text-white shadow-lg' 
-                      : 'bg-white/15 text-white border border-white/25 backdrop-blur-sm shadow-lg'
+                      : 'bg-gray-50 text-gray-900 border border-gray-200 shadow-sm'
                   }`}>
                     <div className={`text-xs sm:text-sm md:text-base leading-relaxed ${
                       message.isUser ? 'font-medium' : 'font-normal'
@@ -301,14 +329,14 @@ const AIConcierge: React.FC = () => {
                               return (
                                 <div key={index} className="flex items-start space-x-2">
                                   <span className="text-disney-gold mt-0.5 sm:mt-1 text-xs sm:text-sm md:text-base">•</span>
-                                  <span className="text-white/90 text-xs sm:text-sm md:text-base">{line.substring(1).trim()}</span>
+                                  <span className="text-gray-700 text-xs sm:text-sm md:text-base">{line.substring(1).trim()}</span>
                                 </div>
                               );
                             } else if (line.trim() === '') {
                               return <br key={index} />;
                             } else {
                               return (
-                                <p key={index} className="text-white/90 text-xs sm:text-sm md:text-base">
+                                <p key={index} className="text-gray-700 text-xs sm:text-sm md:text-base">
                                   {line}
                                 </p>
                               );
@@ -318,7 +346,7 @@ const AIConcierge: React.FC = () => {
                       )}
                     </div>
                     <p className={`text-xs mt-1 sm:mt-2 md:mt-4 ${
-                      message.isUser ? 'text-white/70' : 'text-white/60'
+                      message.isUser ? 'text-white/70' : 'text-gray-500'
                     }`}>
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
@@ -334,11 +362,45 @@ const AIConcierge: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex justify-start"
               >
-                <div className="bg-white/10 text-white border border-white/20 px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl backdrop-blur-sm">
+                <div className="bg-gray-50 text-gray-700 border border-gray-200 px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 rounded-xl sm:rounded-2xl">
                   <div className="flex items-center space-x-2 sm:space-x-3">
                     <Wand2 className="w-4 h-4 sm:w-5 sm:h-5 text-disney-gold animate-wand-sparkle" />
-                    <span className="text-xs sm:text-sm md:text-base font-medium">Mickey's Compass is thinking...</span>
+                    <span className="text-xs sm:text-sm md:text-base font-medium">Magic Chat is thinking...</span>
                     <div className="loading-dots"></div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Quick Prompts in Chat */}
+            {showQuickPrompts && messages.length === 1 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="flex justify-start"
+              >
+                <div className="max-w-[85%] sm:max-w-xs md:max-w-sm lg:max-w-2xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 rounded-xl sm:rounded-2xl bg-gray-50 text-gray-900 border border-gray-200 shadow-sm">
+                  <div className="text-sm font-medium text-gray-700 mb-3">Try asking:</div>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "Plan my perfect Disney day",
+                      "What are the current wait times?",
+                      "Find me dining reservations",
+                      "Where can I meet Mickey Mouse?",
+                      "Show me the best photo spots",
+                      "What's the weather like today?"
+                    ].map((prompt, index) => (
+                      <motion.button
+                        key={index}
+                        onClick={() => handleSendMessage(prompt)}
+                        className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-gray-900 hover:bg-gray-50 hover:border-disney-gold transition-all duration-200 text-xs font-medium"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {prompt}
+                      </motion.button>
+                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -360,8 +422,8 @@ const AIConcierge: React.FC = () => {
                   onKeyPress={handleKeyPress}
                   onFocus={handleSearchFocus}
                   onBlur={handleSearchBlur}
-                  placeholder="Ask Mickey's Compass anything..."
-                  className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-3 md:py-4 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-disney-gold/50 focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[44px]"
+                  placeholder="Ask Magic Chat anything about Disney Parks..."
+                  className="w-full pl-8 sm:pl-10 pr-10 sm:pr-12 py-2 sm:py-3 md:py-4 bg-white border border-gray-200 rounded-lg sm:rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:border-disney-gold focus:ring-2 focus:ring-disney-gold/20 transition-all duration-300 text-sm sm:text-base touch-manipulation min-h-[44px] shadow-sm"
                 />
                 {searchInput && (
                   <motion.button
@@ -414,13 +476,13 @@ const AIConcierge: React.FC = () => {
                                 setSearchInput('');
                                 setShowSearchSuggestions(false);
                               }}
-                              className="w-full flex items-center space-x-3 px-3 py-2.5 text-left text-white hover:bg-white/10 rounded-lg transition-all duration-200 touch-manipulation"
+                              className="w-full flex items-center space-x-3 px-3 py-2.5 text-left text-gray-700 hover:bg-gray-50 rounded-lg transition-all duration-200 touch-manipulation"
                               whileHover={{ x: 4 }}
                             >
                               <Icon size={16} className="text-disney-gold" />
                               <div className="flex-1 min-w-0">
                                 <div className="font-medium text-sm truncate">{action.label}</div>
-                                <div className="text-xs text-slate-light truncate">{action.action}</div>
+                                <div className="text-xs text-gray-500 truncate">{action.action}</div>
                               </div>
                   </motion.button>
                 );
@@ -432,68 +494,6 @@ const AIConcierge: React.FC = () => {
             </form>
           </div>
 
-          {/* Quick Actions Dropdown */}
-          <div className="border-t border-white/10 p-2 sm:p-3 md:p-4">
-            <div className="relative">
-              <motion.button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-full flex items-center justify-between px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl text-white hover:bg-white/10 hover:border-disney-gold/30 transition-all duration-300 text-xs sm:text-sm md:text-base touch-manipulation min-h-[44px]"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <Wand2 size={16} className="text-disney-gold" />
-                  <span className="text-slate-light text-left">Quick Actions & Prompts</span>
-                </div>
-                <ChevronDown 
-                  size={16} 
-                  className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
-                />
-              </motion.button>
-
-              <AnimatePresence>
-                {isDropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-1 sm:mt-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg sm:rounded-xl shadow-lg z-50 max-h-80 sm:max-h-96 overflow-hidden"
-                  >
-                    <div className="p-1 sm:p-2 space-y-1 overflow-y-auto max-h-72 sm:max-h-80">
-                      <div className="px-2 sm:px-3 py-1 sm:py-2 text-xs font-semibold text-disney-gold uppercase tracking-wide border-b border-white/10 mb-1 sm:mb-2">
-                        Popular Questions
-                      </div>
-                      {quickActions.map((action, index) => {
-                        const Icon = action.icon;
-                        return (
-              <motion.button
-                            key={index}
-                            onClick={() => {
-                              handleQuickAction(action.action);
-                              setIsDropdownOpen(false);
-                            }}
-                            className="w-full flex items-center space-x-2 sm:space-x-3 px-2 sm:px-3 py-2 sm:py-3 text-left text-white hover:bg-white/10 rounded-md sm:rounded-lg transition-all duration-200 touch-manipulation min-h-[44px] group"
-                            whileHover={{ x: 4 }}
-                          >
-                            <div className="flex-shrink-0">
-                              <Icon size={16} className="text-disney-gold group-hover:scale-110 transition-transform duration-200" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-xs sm:text-sm md:text-base truncate">{action.label}</div>
-                              <div className="text-xs sm:text-sm text-slate-light truncate mt-0.5">{action.action}</div>
-                            </div>
-                            <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                              <Send size={12} className="text-disney-gold" />
-                            </div>
-              </motion.button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
         </motion.div>
       </div>
     </div>
